@@ -3,8 +3,7 @@ package Gioco;
 public class Main {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		Gioco game = new Gioco();
 	}
 
 }

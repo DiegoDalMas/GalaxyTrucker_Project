@@ -2,13 +2,13 @@ package Gioco;
 
 /*
 INFORMAZIONI UTILI:
-156 componenti di astronave
-68 tessere credito cosmico
-6 tessere titolo camionista
 60 carte avventura
+156 componenti di astronave --> connettori lati
 
-4 alieni marroni
-4 alieni viola
+
+68 tessere credito cosmico	--> crediti colore
+6 tessere titolo camionista
+4 alieni marroni, 4 viola
 
 2 dadi
 

@@ -7,11 +7,13 @@ public class Volo {
 	
 	
 	//private Colore[] giocatore; gestire un array di 4 colori, uno per ogni giocatore? oppure creare 4 oggetti di tipo Giocatore a cui poi assegniamo un colore??
-	private ClassificaAssemblaggioNave posizionamento;		//indica la classifica prima di iniziare i turni di volo, con dei set/get assegniamo in base alla classifica la posizione sui blocchi 1,2,3,4
+	private PosizioneGiocatore posizionamento;		//indica la classifica prima di iniziare i turni di volo, con dei set/get assegniamo in base alla classifica la posizione sui blocchi 1,2,3,4
 
 	private Dado dado;
 	
-	
+	public Volo() {
+		
+	}
 	
 	/*
 	 * public int lancioDadi(int numeroDadiLanciati) {

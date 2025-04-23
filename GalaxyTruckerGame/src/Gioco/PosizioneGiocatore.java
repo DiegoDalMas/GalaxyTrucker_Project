@@ -1,5 +1,5 @@
 package Gioco;
 
-public enum ClassificaAssemblaggioNave {
+public enum PosizioneGiocatore {
 	PRIMO, SECONDO, TERZO, QUARTO;
 }

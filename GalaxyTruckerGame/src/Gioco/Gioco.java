@@ -1,33 +1,31 @@
 package Gioco;
 
 public class Gioco {
-	private Colore giocatore1;
-	private Colore giocatore2;
-	private Colore giocatore3;
-	private Colore giocatore4;
+	private Giocatore g1;
+	private Giocatore g2;
+	private Giocatore g3;
+	private Giocatore g4;
 	
 	public Gioco() {
-		giocatore1 = Colore.BLU;
-		giocatore2 = Colore.ROSSO;
-		giocatore3 = Colore.VERDE;
-		giocatore4 = Colore.GIALLO;
+		g1 = new Giocatore(Colore.BLU);             // QUANDO VIENE CREATO IL GIOCO SI CREANO I 4 GIOCATORI
+		g2 = new Giocatore(Colore.ROSSO);
+		g3 = new Giocatore(Colore.VERDE);
+		g4 = new Giocatore(Colore.GIALLO);
 	}
-	
+
 	
 	public void play() {
-		Astronave[] astronavi;
-		Colore[] giocatori;
-		for(int i=0; i<4; i++) {
-			astronavi[i] = new Astronave(giocatori[i]);
-			astronavi[i].crea();
-		}
+		//Astronave[] astronavi; // VENGONO CREATE LE ASTRONAVI
+
+		// creare un metodo che prenda in input i giocatori e che gli faccia costruire la nave
 		
-		Carta[] mazzo;
-		
-		Magazzino m = new Magazzino();
-		Volo plancia = new Volo();
-		for(int i=0; i<mazzo.length(); i++) {
-			mazzo[i].estraiCarta();		//per ogni carta avra il suo metodo
+		int livello_mazzo=0;
+		Mazzo mazzo= new Mazzo(livello_mazzo);      // crei il mazzo di carte 
+		Magazzino m = new Magazzino(); // crei il magazzino
+		Volo plancia = new Volo();   // crei il tabellone di volo
+		for(int i=0; i<8; i++) {
+			Carta c= mazzo.estrai(g1,g2,g3,g4);//per ogni carta avra il suo metodo
+			// creare una classe turno che prende in imput i giocatori, la carta estratta.
 		}
 		//giocatori.contaCrediti();
 	}

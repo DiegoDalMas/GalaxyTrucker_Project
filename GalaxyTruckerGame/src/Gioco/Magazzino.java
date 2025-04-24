@@ -27,6 +27,8 @@ public class Magazzino {
     private Merci merceBlu;
     private Batteria[] batterie;
     private Astronauta[] astronauti;
+    private Crediti [] uno;
+   
     // crediti e alieni
     
     

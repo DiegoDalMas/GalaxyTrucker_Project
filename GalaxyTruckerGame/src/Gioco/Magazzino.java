@@ -6,7 +6,7 @@ INFORMAZIONI UTILI:
 156 componenti di astronave --> connettori lati
 
 
-68 tessere credito cosmico	--> crediti colore
+
 6 tessere titolo camionista
 4 alieni marroni, 4 viola
 
@@ -17,6 +17,7 @@ CREATE
 55 blocchi merce
 40 batterie
 42 astronauti bianchi
+68 tessere credito cosmico	--> crediti colore
  */
 
 
@@ -39,15 +40,20 @@ public class Magazzino {
     private Astronauta[] astronauti;
     private final int QUANTITA_ASTRONAUTI = 42;
     
-    private Crediti[] creditiUNO;
-    private Crediti[] creditiDUE;
-    private Crediti[] creditiCINQUE;
-    private Crediti[] creditiDIECI;
-    private Crediti[] creditiVENTI;
-    private Crediti[] creditiCINQUANTA;
-    
-   
-    // crediti e alieni
+    // CREDITI
+    private final int[] creditiUNO;
+    private final int[] creditiDUE;
+    private final int[] creditiCINQUE;
+    private final int[] creditiDIECI;
+    private final int[] creditiVENTI;
+    private final int[] creditiCINQUANTA;
+    private final int QUANTITA_CREDITI_UNO = 10;
+    private final int QUANTITA_CREDITI_DUE = 10;
+    private final int QUANTITA_CREDITI_CINQUE = 10;
+    private final int QUANTITA_CREDITI_DIECI = 10;
+    private final int QUANTITA_CREDITI_VENTI = 10;
+    private final int QUANTITA_CREDITI_CINQUANTA = 10;
+    // e alieni
     
     
     public Magazzino() {
@@ -69,7 +75,37 @@ public class Magazzino {
             astronauti[i] = new Astronauta();
         }
         
-        //creditiUNO = new Crediti[]
+        //	CREATE CREDITI
+        this.creditiUNO = new int[this.QUANTITA_CREDITI_UNO];
+        this.creditiDUE = new int[this.QUANTITA_CREDITI_DUE];
+        this.creditiCINQUE = new int[this.QUANTITA_CREDITI_CINQUE];
+        this.creditiDIECI = new int[this.QUANTITA_CREDITI_DIECI];
+        this.creditiVENTI = new int[this.QUANTITA_CREDITI_VENTI];
+        this.creditiCINQUANTA = new int[this.QUANTITA_CREDITI_CINQUANTA];
+        
+        for(int i = 0; i < this.QUANTITA_CREDITI_UNO; i++) {
+        	this.creditiUNO[i] = 1;
+        }
+        for(int i = 0; i < this.QUANTITA_CREDITI_DUE; i++) {
+        	this.creditiDUE[i] = 2;
+        }
+        for(int i = 0; i < this.QUANTITA_CREDITI_CINQUE; i++) {
+        	this.creditiCINQUE[i] = 5;
+        }
+        for(int i = 0; i < this.QUANTITA_CREDITI_DIECI; i++) {
+        	this.creditiDIECI[i] = 10;
+        }
+        for(int i = 0; i < this.QUANTITA_CREDITI_VENTI; i++) {
+        	this.creditiVENTI[i] = 20;
+        }
+        for(int i = 0; i < this.QUANTITA_CREDITI_CINQUANTA; i++) {
+        	this.creditiCINQUANTA[i] = 50;
+        }
+        
+        
+        
+        
+        
     }
 	
 }

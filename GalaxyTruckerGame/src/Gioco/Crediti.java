@@ -1,8 +1,9 @@
 package Gioco;
 public class Crediti {
-private int valore;
-public Crediti(int valore) {
-	this.valore= valore;
-	// assegnare il valore del credito capire come fare
-}
+	private static int valore; 		//indica il valore del credito
+	private static int quantita;	//indica la quantita dei crediti con un singolo valore
+	public Crediti(int valore, int quantita) {		
+		this.valore= valore;
+		this.quantita = quantita;
+	}
 }

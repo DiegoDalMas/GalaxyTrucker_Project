@@ -2,33 +2,34 @@ package Gioco;
 
 /*
 INFORMAZIONI UTILI:
-60 carte avventura
-156 componenti di astronave --> connettori lati
+60 CARTE AVVENTURA
+156 COMPONENTI DI ASTRONAVE --> CONNETTORI LATI
 
 
 
-6 tessere titolo camionista
-4 alieni marroni, 4 viola
+6 TESSERE TITOLO CAMIONISTA
 
-2 dadi
+
+2 DADI
 
 
 CREATE
-55 blocchi merce
-40 batterie
-42 astronauti bianchi
-68 tessere credito cosmico	--> crediti colore
+55 BLOCCHI MERCE
+40 BATTERIE
+42 ASTRONAUTI BIANCHI
+68 TESSERE CREDITO COSMICO	--> CREDITI COLORE
+4 ALIENI MARRONI, 4 VIOLA
  */
 
 
 public class Magazzino {
 	//MERCE			-->> TODO METTERE I VALORI GIUSTI ALLE COSTANTI IN BASE AL NUMERO DEI PEZZI
-	private Merci merceRossa;
-    private Merci merceVerde;
-    private Merci merceGialla;
-    private Merci merceBlu;
-    private final int QUANTITA_MERCE_ROSSA = 8;
-    private final int QUANTITA_MERCE_VERDE = 8;
+	private Merci[] merceRosse;
+	private Merci[] merceVerde;
+    private Merci[] merceGialla;
+    private Merci[] merceBlu;
+	private final int QUANTITA_MERCE_ROSSA = 8;
+	private final int QUANTITA_MERCE_VERDE = 8;
     private final int QUANTITA_MERCE_GIALLA = 8;
     private final int QUANTITA_MERCE_BLU = 8;
     
@@ -62,11 +63,23 @@ public class Magazzino {
     
     public Magazzino() {
     	//	CREATE MERCI
-    	this.merceRossa = new Merci(Colore.ROSSO, this.QUANTITA_MERCE_ROSSA);
-        this.merceVerde = new Merci(Colore.VERDE, this.QUANTITA_MERCE_VERDE);
-        this.merceGialla = new Merci(Colore.GIALLO, this.QUANTITA_MERCE_GIALLA);
-        this.merceBlu = new Merci(Colore.BLU, this.QUANTITA_MERCE_BLU);
-        
+    	merceRosse = new Merci[this.QUANTITA_MERCE_ROSSA];
+    	merceVerde = new Merci[this.QUANTITA_MERCE_VERDE];
+    	merceGialla = new Merci[this.QUANTITA_MERCE_GIALLA];
+    	merceBlu = new Merci[this.QUANTITA_MERCE_BLU];
+    	for(int i=0; i < this.QUANTITA_MERCE_ROSSA; i++) {
+    		merceRosse[i] = new Merci(Colore.ROSSO);
+    	}
+    	for(int i=0; i < this.QUANTITA_MERCE_VERDE; i++) {
+    		merceVerde[i] = new Merci(Colore.VERDE);
+    	}
+    	for(int i=0; i < this.QUANTITA_MERCE_GIALLA; i++) {
+    		merceGialla[i] = new Merci(Colore.GIALLO);
+    	}
+    	for(int i=0; i < this.QUANTITA_MERCE_BLU; i++) {
+    		merceBlu[i] = new Merci(Colore.BLU);
+    	}
+    	
         //	CREATE BATTERIE
         batterie = new Batteria[this.QUANTITA_BATTERIE];
         for (int i = 0; i < this.QUANTITA_BATTERIE; i++) {

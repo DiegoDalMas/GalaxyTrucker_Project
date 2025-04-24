@@ -1,21 +1,18 @@
 package Gioco;
 
 public class Alieno {
-	public enum Colore {
-        VIOLA, MARRONE
-    }
-    private Colore colore;
+    private ColoreAlieno colore;
 
-    public Alieno(Colore colore) {
+    public Alieno(ColoreAlieno colore) {
         this.colore = colore;
     }
 
-    public Colore getColore() {
+    public ColoreAlieno getColore() {
         return this.colore;
     }
 
     public int bonusPotenzaFuoco() {
-        if(colore == Colore.VIOLA) {
+        if(colore == ColoreAlieno.VIOLA) {
         	return 2;
         }else {
         	return 0;
@@ -23,7 +20,7 @@ public class Alieno {
     }
 
     public int bonusPotenzaMotore() {
-    	if(colore == Colore.MARRONE) {
+    	if(colore == ColoreAlieno.MARRONE) {
         	return 2;
         }else {
         	return 0;

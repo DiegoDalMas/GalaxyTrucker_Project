@@ -53,7 +53,11 @@ public class Magazzino {
     private final int QUANTITA_CREDITI_DIECI = 10;
     private final int QUANTITA_CREDITI_VENTI = 10;
     private final int QUANTITA_CREDITI_CINQUANTA = 10;
-    // e alieni
+    
+    // ALIENI
+    private Alieno[] alieniViola;
+    private Alieno[] alieniMarroni;
+    private final int QUANTITA_ALIENI_COLORE = 4;
     
     
     public Magazzino() {
@@ -102,6 +106,13 @@ public class Magazzino {
         	this.creditiCINQUANTA[i] = 50;
         }
         
+        // CREATE ALIENI
+        this.alieniViola = new Alieno[this.QUANTITA_ALIENI_COLORE];
+        this.alieniMarroni = new Alieno[this.QUANTITA_ALIENI_COLORE];
+        for(int i = 0; i < this.QUANTITA_ALIENI_COLORE; i++) {
+        	this.alieniMarroni[i] = new Alieno(ColoreAlieno.MARRONE);
+        	this.alieniViola[i] = new Alieno(ColoreAlieno.VIOLA);
+        }
         
         
         

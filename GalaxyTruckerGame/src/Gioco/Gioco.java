@@ -15,7 +15,8 @@ public class Gioco {
 
 	
 	public void play() {
-		//Astronave[] astronavi; // VENGONO CREATE LE ASTRONAVI
+        // VENGONO CREATE LE ASTRONAVI, oppure meglio le astronavi vegnono create all'interno di giocatore, ASTRONAVE EXTENDS GIOCATORE
+		
 
 		// creare un metodo che prenda in input i giocatori e che gli faccia costruire la nave
 		

@@ -1,0 +1,20 @@
+CLASSI FINITE:
+- Dado
+- PosizoneGiocatore
+- Main
+- Crediti?
+- ColoreAlieno
+- Colore
+- Casella
+
+
+DA FARE:
+- Creare un pacchetto COMPONENTI con dentro tutte le varie componenti
+- Cercare di trovare una soluzione per farsi che il costruttore di magazzino sia meno pesante
+- Astronauta,Batteria e Alieni veogno asseganti con la costeruzine della astronave, qundi meglio forse 
+  che siano a se e non nel magazzino
+- Capire se vogliamo usare le classi astronauta o alieni che non hanno metodi o usarli come singole variabili int
+- capire come far costruire la nave anche con i pezzi che si possono girare 
+- creare una classe turno per gestire il tunro di volo 
+- capire come gestire la posizione dei giocatori all'interno del turno di volo
+- Astronave potrebbe essere figlio di Giocatore cosi da creare l 'astronave in giocatore.

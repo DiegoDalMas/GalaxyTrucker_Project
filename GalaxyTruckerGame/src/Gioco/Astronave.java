@@ -1,7 +1,8 @@
 package Gioco;
 
 public class Astronave {
-	private Colore giocatore;
+	private Giocatore g; 
+	private Batteria b;
 	
 	public Astronave() {
 		
@@ -10,19 +11,4 @@ public class Astronave {
 	public void crea() {
 		
 	}
-	
-	
-	/*
-	private int contaUmani() {
-	    int count = 0;
-	    // CAPIRE COME REALIZZARE LA FUNZIONE
-	    return count;
-	}
-	
-	// SE ALMENO 1 UMANO RESTITUISCE TRUE
-	public boolean puòVolare() {
-	    return contaUmani() > 0;
-	}
-
-	*/
 }

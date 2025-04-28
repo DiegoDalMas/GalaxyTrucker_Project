@@ -127,9 +127,21 @@ public class Magazzino {
         	this.alieniViola[i] = new Alieno(ColoreAlieno.VIOLA);
         }
         
-        
-        
-        
     }
 	
+   public void AssegnaCrediti() {
+	   
+   }
+   public void AssegnaMerci() {
+	   
+   }
+   public void AssegnaAstronauti() {
+	   
+   }
+  public void AssegnaAlieni() {
+	  
+  }
+  public void AssegnaBatterie() {
+	  
+  }
 }

@@ -1,16 +1,20 @@
 package Gioco;
 
+import java.util.*;
+
 public class Gioco {
-	private Giocatore g1;
-	private Giocatore g2;
-	private Giocatore g3;
-	private Giocatore g4;
+	private List<Giocatore> giocatori;
+	private Magazzino magazzino;
 	
 	public Gioco() {
-		g1 = new Giocatore(Colore.BLU);             // QUANDO VIENE CREATO IL GIOCO SI CREANO I 4 GIOCATORI
-		g2 = new Giocatore(Colore.ROSSO);
-		g3 = new Giocatore(Colore.VERDE);
-		g4 = new Giocatore(Colore.GIALLO);
+		this.magazzino = new Magazzino();
+        this.giocatori = new ArrayList<>();
+
+        // CREAZIONE 4 GIOCATORI
+        giocatori.add(new Giocatore(Colore.BLU));
+        giocatori.add(new Giocatore(Colore.ROSSO));
+        giocatori.add(new Giocatore(Colore.VERDE));
+        giocatori.add(new Giocatore(Colore.GIALLO));
 	}
 
 	
@@ -25,9 +29,18 @@ public class Gioco {
 		Magazzino m = new Magazzino(); // crei il magazzino
 		Volo plancia = new Volo();   // crei il tabellone di volo
 		for(int i=0; i<8; i++) {
-			Carta c= mazzo.estrai(g1,g2,g3,g4);//per ogni carta avra il suo metodo
+			//Carta c= mazzo.estrai();//per ogni carta avra il suo metodo
 			// creare una classe turno che prende in imput i giocatori, la carta estratta.
 		}
 		//giocatori.contaCrediti();
 	}
+	
+	
+	//ESEMPIO PER ASSEGNARE QUALCOSA (VOGLIO ASSEGNARE 2 UMANI AL ROSSO)
+	/*for(Giocatore g: giocatori) {
+		if(g.getColore() == Colore.ROSSO) {	//HO CONTROLLATO CHE IL COLORE SIA GIUSTO
+			g.assegnaUmano(magazzino);
+			g.assegnaUmano(magazzino);
+		}
+	}*/
 }

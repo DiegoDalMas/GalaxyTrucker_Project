@@ -1,5 +1,7 @@
 package Gioco;
 
+import java.util.*;
+
 /*
 INFORMAZIONI UTILI:
 60 CARTE AVVENTURA
@@ -8,32 +10,96 @@ INFORMAZIONI UTILI:
 
 
 6 TESSERE TITOLO CAMIONISTA
-
+40 BATTERIE
+42 ASTRONAUTI BIANCHI
 
 2 DADI
 
 
 CREATE
 55 BLOCCHI MERCE
-40 BATTERIE
-42 ASTRONAUTI BIANCHI
+
 68 TESSERE CREDITO COSMICO	--> CREDITI COLORE
 4 ALIENI MARRONI, 4 VIOLA
  */
 
 
 public class Magazzino {
-	//MERCE			-->> TODO METTERE I VALORI GIUSTI ALLE COSTANTI IN BASE AL NUMERO DEI PEZZI
-	private Merci[] merceRosse;
-	private Merci[] merceVerde;
-    private Merci[] merceGialla;
-    private Merci[] merceBlu;
-	private final int QUANTITA_MERCE_ROSSA = 8;
-	private final int QUANTITA_MERCE_VERDE = 8;
-    private final int QUANTITA_MERCE_GIALLA = 8;
-    private final int QUANTITA_MERCE_BLU = 8;
+	//MERCE
+	private static final int MAX_MERCI = 56;
+	private static final int MAX_ALIENI = 8;
+	private static final int MAX_BATTERIE = 40;
+	private static final int MAX_UMANI = 42;
+	private List<Merci> merci;
+	private List<Alieno> alieni;
+	private List<Batteria> batterie;
+	private List<Umano> umani;
+	
+	public Magazzino() {
+        merci = new ArrayList<>(MAX_MERCI);
+        aggiungiMerci(Colore.BLU, 14);
+        aggiungiMerci(Colore.GIALLO, 17);
+        aggiungiMerci(Colore.VERDE, 13);
+        aggiungiMerci(Colore.ROSSO, 12);
+        alieni = new ArrayList<>(MAX_ALIENI);
+        aggiungiAlieni(ColoreAlieno.VIOLA, 4);
+        aggiungiAlieni(ColoreAlieno.MARRONE, 4);
+        batterie = new ArrayList<>(MAX_BATTERIE);
+        aggiungiBatterie(MAX_BATTERIE);
+        umani = new ArrayList<>(MAX_UMANI);
+        aggiungiUmani(MAX_UMANI);
+    }
+
+    private void aggiungiMerci(Colore colore, int quantita) {
+        for (int i = 0; i < quantita; i++) {
+            merci.add(new Merci(colore));
+        }
+    }
     
-    //BATTERIE
+    private void aggiungiAlieni(ColoreAlieno colore, int quantita) {
+        for (int i = 0; i < quantita; i++) {
+            alieni.add(new Alieno(colore));
+        }
+    }
+    
+    private void aggiungiBatterie(int quantita) {
+    	for(int i=0; i<quantita; i++) {
+    		batterie.add(new Batteria());
+    	}
+    }
+    
+    private void aggiungiUmani(int quantita) {
+        for (int i = 0; i < quantita; i++) {
+            umani.add(new Umano());
+        }
+    }
+    
+    public Alieno prendiAlieno(ColoreAlieno colore) {
+        for (Alieno a : alieni) {
+            if (a.getColore() == colore) {
+                alieni.remove(a);
+                return a;
+            }
+        }
+        return null;
+    }
+    
+    public Batteria prendiBatteria() {
+        if (!batterie.isEmpty()) {
+        	return batterie.remove(0);
+        }
+        return null;
+    }
+    
+    public Umano prendiUmano() {
+        if (!umani.isEmpty()) {
+        	return umani.remove(0);
+        }
+        return null;
+    }
+	
+    
+    /*//BATTERIE
     private Batteria[] batterie;
     private final int QUANTITA_BATTERIE = 40;
     
@@ -41,19 +107,7 @@ public class Magazzino {
     private Astronauta[] astronauti;
     private final int QUANTITA_ASTRONAUTI = 42;
     
-    // CREDITI
-    private final int[] creditiUNO;
-    private final int[] creditiDUE;
-    private final int[] creditiCINQUE;
-    private final int[] creditiDIECI;
-    private final int[] creditiVENTI;
-    private final int[] creditiCINQUANTA;
-    private final int QUANTITA_CREDITI_UNO = 10;
-    private final int QUANTITA_CREDITI_DUE = 10;
-    private final int QUANTITA_CREDITI_CINQUE = 10;
-    private final int QUANTITA_CREDITI_DIECI = 10;
-    private final int QUANTITA_CREDITI_VENTI = 10;
-    private final int QUANTITA_CREDITI_CINQUANTA = 10;
+    
     
     // ALIENI
     private Alieno[] alieniViola;
@@ -62,23 +116,7 @@ public class Magazzino {
     
     
     public Magazzino() {
-    	//	CREATE MERCI
-    	merceRosse = new Merci[this.QUANTITA_MERCE_ROSSA];
-    	merceVerde = new Merci[this.QUANTITA_MERCE_VERDE];
-    	merceGialla = new Merci[this.QUANTITA_MERCE_GIALLA];
-    	merceBlu = new Merci[this.QUANTITA_MERCE_BLU];
-    	for(int i=0; i < this.QUANTITA_MERCE_ROSSA; i++) {
-    		merceRosse[i] = new Merci(Colore.ROSSO);
-    	}
-    	for(int i=0; i < this.QUANTITA_MERCE_VERDE; i++) {
-    		merceVerde[i] = new Merci(Colore.VERDE);
-    	}
-    	for(int i=0; i < this.QUANTITA_MERCE_GIALLA; i++) {
-    		merceGialla[i] = new Merci(Colore.GIALLO);
-    	}
-    	for(int i=0; i < this.QUANTITA_MERCE_BLU; i++) {
-    		merceBlu[i] = new Merci(Colore.BLU);
-    	}
+    	
     	
         //	CREATE BATTERIE
         batterie = new Batteria[this.QUANTITA_BATTERIE];
@@ -127,7 +165,26 @@ public class Magazzino {
         	this.alieniViola[i] = new Alieno(ColoreAlieno.VIOLA);
         }
         
-    }
+    }*/
+	
+	
+	
+	// PRELEVA E RIMUOVE UNA MERCE DI UN CERTO COLORE
+	public Merci prelevaMerce(Colore colore) {
+	    for (int i = 0; i < merci.size(); i++) {
+	        if (merci.get(i).getColore() == colore) {
+	            return merci.remove(i); // Restituisce e rimuove la merce trovata
+	        }
+	    }
+	    return null; // Nessuna merce di quel colore
+	}
+    
+    
+    
+    
+    
+    
+	
 	
    public void AssegnaCrediti() {
 	   

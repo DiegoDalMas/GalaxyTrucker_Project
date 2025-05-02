@@ -1,10 +1,10 @@
 package Gioco;
 
-public class Astronauta {
+public class Umano {
 //	private Colore giocatoreAssegnato;
 //	private boolean disponibile;
 	
-	public Astronauta() {
+	public Umano() {
 //		this.disponibile = true;
 //		this.giocatoreAssegnato = null;
 	}

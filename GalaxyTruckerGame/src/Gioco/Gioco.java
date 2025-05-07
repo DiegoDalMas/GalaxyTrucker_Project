@@ -27,7 +27,14 @@ public class Gioco {
 		int livello_mazzo=0;
 		Mazzo mazzo= new Mazzo(livello_mazzo);      // crei il mazzo di carte 
 		Magazzino m = new Magazzino(); // crei il magazzino
-		Volo plancia = new Volo();   // crei il tabellone di volo
+		Volo plancia = new Volo(); // crei il tabellone di volo
+		for(Giocatore g: giocatori) {
+			//Estrazione carta (metodo classe tessera)
+	    	//chiedi se vuole tenere il componente
+	    	// se la ripsosta è si
+			g.getA().crea(tessera);
+	    	// altrimenti add al mazzo
+		}
 		for(int i=0; i<8; i++) {
 			//Carta c= mazzo.estrai();//per ogni carta avra il suo metodo
 			// creare una classe turno che prende in imput i giocatori, la carta estratta.

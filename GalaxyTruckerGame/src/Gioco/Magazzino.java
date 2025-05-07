@@ -178,27 +178,5 @@ public class Magazzino {
 	    }
 	    return null; // Nessuna merce di quel colore
 	}
-    
-    
-    
-    
-    
-    
-	
-	
-   public void AssegnaCrediti() {
-	   
-   }
-   public void AssegnaMerci() {
-	   
-   }
-   public void AssegnaAstronauti() {
-	   
-   }
-  public void AssegnaAlieni() {
-	  
-  }
-  public void AssegnaBatterie() {
-	  
-  }
+ 
 }

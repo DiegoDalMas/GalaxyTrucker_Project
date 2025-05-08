@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+
 public class Astronave { 
 	private List<Alieno> alieni;
 	private List<Batteria> batterie;
@@ -19,7 +20,7 @@ public class Astronave {
         this.griglia= new Casella[size1][size2];
 		for (int i = 0; i < size1; i++) {
 			for (int j = 0; j < size2; j++) {
-				griglia[i][j] = new Casella(i, j);
+				griglia[i][j] = new Tessera() ;
 			}
 		}
 	}

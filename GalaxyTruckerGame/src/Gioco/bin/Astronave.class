@@ -1,0 +1,30 @@
+Êþº¾   A +   	Astronave   java/lang/Object nome Ljava/lang/String; 	struttura I velocita capacitaCarico carico danni <init> (Ljava/lang/String;III)V Code   java/lang/Error  ‹Unresolved compilation problem: 
+	Must declare a named package because this compilation unit is associated to the named module 'Astronave'
+
+   
+  (Ljava/lang/String;)V LineNumberTable LocalVariableTable this 
+LAstronave; carica (I)V  !Unresolved compilation problem: 
+ subisciDanno ripara volo ()V stato  getNome ()Ljava/lang/String; 
+getVelocita ()I getCapacitaCarico 
+SourceFile Astronave.java !                  	     
+     
+         	  
+      4     
+» Y· ¿                   
+            4     
+» Y· ¿                   
+            4     
+» Y· ¿                   
+             4     
+» Y· ¿           )        
+      ! "     4     
+» Y· ¿           /        
+      # "     4     
+» Y· ¿           8        
+      $ %     4     
+» Y· ¿           =        
+      & '     4     
+» Y· ¿           B        
+      ( '     4     
+» Y· ¿           G        
+      )    *

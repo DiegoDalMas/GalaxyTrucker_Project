@@ -32,7 +32,7 @@ public class Gioco {
 			//Estrazione carta (metodo classe tessera)
 	    	//chiedi se vuole tenere il componente
 	    	// se la ripsosta è si
-			g.getA().crea(tessera);
+			g.getAstronave().crea(tessera);
 	    	// altrimenti add al mazzo
 		}
 		for(int i=0; i<8; i++) {

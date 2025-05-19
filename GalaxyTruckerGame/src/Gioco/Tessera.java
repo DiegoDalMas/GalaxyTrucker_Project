@@ -29,4 +29,13 @@ public class Tessera {
     public int getCapacitaStiva(){
         return capacitaStiva;
     }
+    
+    public void ruotaSensoOrario() {
+        // ruota i connettori in senso orario: alto <- sinistra, destra <- alto, ...
+        TipoConnettore temp = connettori[3];
+        connettori[3] = connettori[2];
+        connettori[2] = connettori[1];
+        connettori[1] = connettori[0];
+        connettori[0] = temp;
+    }
 }

@@ -6,20 +6,21 @@ public class Giocatore {
 	private Colore colore;
 	private PosizioneGiocatore pos;
 	private int crediti;
-	private Astronave a ;
+	private Astronave astronave;
  
 	public Giocatore(Colore colore) {
 		this.colore = colore;
-		a = new Astronave();
+		this.crediti = 0;
+		this.astronave = new Astronave();
 	}
 	
 	
-	public Astronave getA() {
-		return a;
+	public Astronave getAstronave() {
+		return astronave;
 	}
 
-	public void setA(Astronave a) {
-		this.a = a;
+	public void setAstronave(Astronave a) {
+		this.astronave = a;
 	}
 
 	public Colore getColore() {

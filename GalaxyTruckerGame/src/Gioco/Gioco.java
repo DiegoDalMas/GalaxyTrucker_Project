@@ -25,7 +25,7 @@ public class Gioco {
 		// creare un metodo che prenda in input i giocatori e che gli faccia costruire la nave
 		
 		int livello_mazzo=0;
-		Mazzo mazzo= new Mazzo(livello_mazzo);      // crei il mazzo di carte 
+		//Mazzo mazzo= new Mazzo(livello_mazzo);      // crei il mazzo di carte 
 		Magazzino m = new Magazzino(); // crei il magazzino
 		PlanciaVolo plancia = new PlanciaVolo(); // crei il tabellone di volo
 		for(Giocatore g: giocatori) {

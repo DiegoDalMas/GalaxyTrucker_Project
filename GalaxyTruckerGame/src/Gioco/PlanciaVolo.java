@@ -5,6 +5,7 @@ public class PlanciaVolo {
 	private Colore[] posizioni;
 	private final int DIMENSIONE = 100;
 	private final int POSIZIONE_CENTRALE = 50;
+	private int livello;
 	
 	public PlanciaVolo(){
 		posizioni = new Colore[DIMENSIONE];

@@ -4,14 +4,16 @@ import java.util.*;
 
 public class Giocatore {
 	private Colore colore;
+	private Astronave astronave;
 	private PosizioneGiocatore pos;
 	private int crediti;
-	private Astronave astronave;
+	private int componentiDistrutti;
  
 	public Giocatore(Colore colore) {
 		this.colore = colore;
-		this.crediti = 0;
 		this.astronave = new Astronave();
+		this.crediti = 0;
+		this.componentiDistrutti = 0;
 	}
 	
 	

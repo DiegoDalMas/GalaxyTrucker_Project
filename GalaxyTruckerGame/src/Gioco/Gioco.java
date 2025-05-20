@@ -27,7 +27,7 @@ public class Gioco {
 		int livello_mazzo=0;
 		Mazzo mazzo= new Mazzo(livello_mazzo);      // crei il mazzo di carte 
 		Magazzino m = new Magazzino(); // crei il magazzino
-		Volo plancia = new Volo(); // crei il tabellone di volo
+		PlanciaVolo plancia = new PlanciaVolo(); // crei il tabellone di volo
 		for(Giocatore g: giocatori) {
 			//Estrazione carta (metodo classe tessera)
 	    	//chiedi se vuole tenere il componente

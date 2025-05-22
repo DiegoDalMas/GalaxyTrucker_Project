@@ -45,6 +45,14 @@ public class Astronave {
 			}
 		}
 	}
+	
+	public boolean piazzaTessera(Tessera t, int riga, int colonna) {
+        if (riga < 0 || riga >= NUMERO_RIGHE || colonna < 0 || colonna >= NUMERO_COLONNE) return false;
+        if (griglia[riga][colonna] != null) return false;
+		griglia[riga][colonna] = new Casella(riga, colonna);
+        griglia[riga][colonna].setTessera(t);
+        return true;
+    }
 
 	public boolean assegnaAlieno(Magazzino magazzino, ColoreAlieno colore) {
 		for (Alieno a : alieni) {

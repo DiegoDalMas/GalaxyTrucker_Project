@@ -28,4 +28,7 @@ public class Giocatore {
 	public Colore getColore() {
 		return colore;
 	}
+	public void assegnaCrediti(int crediti) {
+		this.crediti +=crediti;
+	}
 }

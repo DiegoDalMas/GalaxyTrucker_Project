@@ -46,4 +46,7 @@ public class Mazzo {
         c.applicaEffetto(giocatori, leader);
     }
 	
+    public boolean isEmpty() {
+    	return mazzoCarte.isEmpty();
+    }
 }

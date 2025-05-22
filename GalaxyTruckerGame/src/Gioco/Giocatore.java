@@ -28,7 +28,17 @@ public class Giocatore {
 	public Colore getColore() {
 		return colore;
 	}
+	
+	
 	public void assegnaCrediti(int crediti) {
-		this.crediti +=crediti;
+		this.crediti += crediti;
+	}
+	
+	public PosizioneGiocatore getPosizione() {
+		return pos;
+	}
+
+	public void setPosizione(PosizioneGiocatore pos) {
+		this.pos = pos;
 	}
 }

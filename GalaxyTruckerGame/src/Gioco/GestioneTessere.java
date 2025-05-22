@@ -51,4 +51,8 @@ public class GestioneTessere {
         return mazzoTessere.size();
     }
     
+    public void restituisciTessera(Tessera t) {
+        mazzoTessere.add(t); // rimette la tessera in fondo al mazzo
+    }
+    
 }

@@ -8,26 +8,42 @@ public class Astronave {
 	private List<Batteria> batterie;
 	private List<Umano> umani;
 	private Casella[][] griglia;
-	private int size1 = 8;
-	private int size2 = 8;
+	private int livello;
+	private final int NUMERO_COLONNE;
+	private final int NUMERO_RIGHE;
 
-	public Astronave() {
+	public Astronave(int livello) {
+		this.livello = livello;
+		
+		switch(this.livello){
+			case 1: 
+				this.NUMERO_COLONNE = 5;
+				this.NUMERO_RIGHE = 5;
+				break;
+
+			case 2:
+				this.NUMERO_COLONNE = 7;
+				this.NUMERO_RIGHE = 5;
+				break;
+
+			case 3:
+				this.NUMERO_COLONNE = 9;
+				this.NUMERO_RIGHE = 6;
+				break;
+			
+			default:
+				throw new IllegalArgumentException("livello non valido: ");
+
+		}
 		this.alieni = new ArrayList<>();
-		this.batterie = new ArrayList<>();
-		this.umani = new ArrayList<>();
-		this.griglia = new Casella[size1][size2];
-		for (int i = 0; i < size1; i++) {
-			for (int j = 0; j < size2; j++) {
-				griglia[i][j] = null;
+        this.batterie = new ArrayList<>();
+        this.umani = new ArrayList<>();
+        this.griglia= new Casella[NUMERO_RIGHE][NUMERO_COLONNE];
+		for (int i = 0; i < NUMERO_RIGHE; i++) {
+			for (int j = 0; j < NUMERO_COLONNE; j++) {
+				griglia[i][j] = null ;
 			}
 		}
-	}
-
-	public void crea(Tessera t) {
-		// metodo che cheide la posizone e mette la tessere in griglia
-		// una volta posizionata in griglia metodo che verifica se i connettori sono
-		// giusti
-
 	}
 
 	public boolean assegnaAlieno(Magazzino magazzino, ColoreAlieno colore) {

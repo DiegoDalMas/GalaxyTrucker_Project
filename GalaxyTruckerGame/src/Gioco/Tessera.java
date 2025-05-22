@@ -38,4 +38,13 @@ public class Tessera {
         connettori[1] = connettori[0];
         connettori[0] = temp;
     }
+    
+    public void mostraTessera(){
+        System.out.println("\nTessera Dettagli:");
+        System.out.println("Tipo: " + this.getTipo());
+        TipoConnettore[] c = this.getConnettori();
+        System.out.println("Connettori - ALTO: " + c[0] + ", DESTRA: " + c[1] + ", BASSO: " + c[2] + ", SINISTRA: " + c[3]);
+        if (this.getCapacitaBatteria() > 0) System.out.println("Capacità Batteria: " + this.getCapacitaBatteria());
+        if (this.getCapacitaStiva() > 0) System.out.println("Capacità Stiva: " + this.getCapacitaStiva());
+    }
 }

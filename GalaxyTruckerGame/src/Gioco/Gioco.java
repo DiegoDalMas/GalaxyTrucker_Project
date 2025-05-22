@@ -5,49 +5,53 @@ import java.util.*;
 public class Gioco {
 	private List<Giocatore> giocatori;
 	private Magazzino magazzino;
+	private Mazzo mazzoCarteAvventura;
+	private GestioneTessere tutteLeTessere;
+	private List<Giocatore> ordineDiRotta;
 	
 	public Gioco() {
-		this.magazzino = new Magazzino();
-        this.giocatori = new ArrayList<>();
-
-        // CREAZIONE 4 GIOCATORI
+		// CREAZIONE 4 GIOCATORI
+		this.giocatori = new ArrayList<>();
         giocatori.add(new Giocatore(Colore.BLU));
         giocatori.add(new Giocatore(Colore.ROSSO));
         giocatori.add(new Giocatore(Colore.VERDE));
         giocatori.add(new Giocatore(Colore.GIALLO));
-	}
 
-	
-	public void play() {
-        // VENGONO CREATE LE ASTRONAVI, oppure meglio le astronavi vegnono create all'interno di giocatore, ASTRONAVE EXTENDS GIOCATORE
-		
+		this.magazzino = new Magazzino();
+		this.mazzoCarteAvventura = new Mazzo("carteAvventura.csv");	//crea Mazzo con le carte già mischiato
+		this.tutteLeTessere = new GestioneTessere("fileTessere.csv");
 
-		// creare un metodo che prenda in input i giocatori e che gli faccia costruire la nave
-		
-		int livello_mazzo=0;
-		//Mazzo mazzo= new Mazzo(livello_mazzo);      // crei il mazzo di carte 
-		Magazzino m = new Magazzino(); // crei il magazzino
-		PlanciaVolo plancia = new PlanciaVolo(); // crei il tabellone di volo
-		for(Giocatore g: giocatori) {
-			//Estrazione carta (metodo classe tessera)
-	    	//chiedi se vuole tenere il componente
-	    	// se la ripsosta è si
-			g.getAstronave().crea(tessera);
-	    	// altrimenti add al mazzo
-		}
-		for(int i=0; i<8; i++) {
-			//Carta c= mazzo.estrai();//per ogni carta avra il suo metodo
-			// creare una classe turno che prende in imput i giocatori, la carta estratta.
-		}
-		//giocatori.contaCrediti();
+		this.ordineDiRotta = new ArrayList<>();
 	}
 	
+	public void play(){
+		System.out.println("INIZIO DEL GIOCO!");
+		
+		//I GIOCATORI SCELGONO PRIMA DI INIZIARE UN GIOCO IL RISPETTIVO COLORE
+		//L'ORDINE DI PARTENZA SARA CASUALE
+		Collections.shuffle(giocatori);
+		this.ordineDiRotta = new ArrayList<>(giocatori);
+
+		System.out.println("\n Ordine Iniziale di COSTRUZIONE: ");
+		for (int i = 0; i < ordineDiRotta.size(); i++) {
+            System.out.println((i+1) + ". " + ordineDiRotta.get(i).getColore());
+        }
+
+		//FASE DI COSTRUZIONE
+		CostruzioneSimulatore costruzione = new CostruzioneSimulatore(giocatori, tutteLeTessere);
+		costruzione.avviaCostruzione();
+
+		//FASE DI VOLO
+		GestioneTurni volo = new GestioneTurni(giocatori, mazzoCarteAvventura);
+        volo.avviaFaseDiVolo();
+
+		//FINITO IL VOLO, CALCOLO DEI CREDITI
+		calcolaCrediti();//DA FARE
+	}
 	
-	//ESEMPIO PER ASSEGNARE QUALCOSA (VOGLIO ASSEGNARE 2 UMANI AL ROSSO)
-	/*for(Giocatore g: giocatori) {
-		if(g.getColore() == Colore.ROSSO) {	//HO CONTROLLATO CHE IL COLORE SIA GIUSTO
-			g.assegnaUmano(magazzino);
-			g.assegnaUmano(magazzino);
-		}
-	}*/
+	private void calcolaCrediti() {
+        System.out.println("\n Classifica Finale del Round");
+        //metodo per calcolare i crediti
+    }
+	
 }

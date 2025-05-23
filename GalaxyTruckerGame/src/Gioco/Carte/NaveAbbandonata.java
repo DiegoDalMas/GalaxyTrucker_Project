@@ -8,8 +8,9 @@ import Gioco.Giocatore;
 public class NaveAbbandonata extends Carta {
 	private boolean conferma;
 	private Scanner in = new Scanner(System.in);
-	private int numero; // numero che ce sulla carta
+	private int numeroCarta; // numero che ce sulla carta
 	private int crediti; // crediti che vengono assegnati
+	private int giorniPersi;
 
 	public NaveAbbandonata() {
 
@@ -17,20 +18,22 @@ public class NaveAbbandonata extends Carta {
 
 	@Override
 	public void applicaEffetto(List<Giocatore> giocatori, Giocatore leader) {
+		System.out.println("CARTA NAVE ABBANDONATA");
 		do {
 			System.out.println("giocatore " + leader.getColore() + "vuoi fermarti?"); // richiesta al giocatore se vuole																// fermarsi
 			conferma = in.nextBoolean();
 			if(conferma==true) {
-				int eq = leader.getAstronave().getEquipaggio();
-				if (eq > numero) {	
+				int equipaggio = leader.getAstronave().getEquipaggio();
+				if (equipaggio > numeroCarta) {	
 					leader.assegnaCrediti(crediti);
-					leader.getAstronave().perditaEquipaggio(numero);
+					leader.getAstronave().perditaEquipaggio(numeroCarta);
 				}else {
 					System.out.println("numero di equipaggio insufficente");
 					conferma=false;
 				}
 			}
 		} while (conferma == false);
-
+		giocatori.aggiornaPosizioni(giorniPersi);
 	}
+	
 }

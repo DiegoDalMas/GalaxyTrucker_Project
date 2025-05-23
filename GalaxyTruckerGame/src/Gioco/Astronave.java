@@ -14,45 +14,47 @@ public class Astronave {
 
 	public Astronave(int livello) {
 		this.livello = livello;
-		
-		switch(this.livello){
-			case 1: 
-				this.NUMERO_COLONNE = 5;
-				this.NUMERO_RIGHE = 5;
-				break;
 
-			case 2:
-				this.NUMERO_COLONNE = 7;
-				this.NUMERO_RIGHE = 5;
-				break;
+		switch (this.livello) {
+		case 1:
+			this.NUMERO_COLONNE = 5;
+			this.NUMERO_RIGHE = 5;
+			break;
 
-			case 3:
-				this.NUMERO_COLONNE = 9;
-				this.NUMERO_RIGHE = 6;
-				break;
-			
-			default:
-				throw new IllegalArgumentException("livello non valido: ");
+		case 2:
+			this.NUMERO_COLONNE = 7;
+			this.NUMERO_RIGHE = 5;
+			break;
+
+		case 3:
+			this.NUMERO_COLONNE = 9;
+			this.NUMERO_RIGHE = 6;
+			break;
+
+		default:
+			throw new IllegalArgumentException("livello non valido: ");
 
 		}
 		this.alieni = new ArrayList<>();
-        this.batterie = new ArrayList<>();
-        this.umani = new ArrayList<>();
-        this.griglia= new Casella[NUMERO_RIGHE][NUMERO_COLONNE];
+		this.batterie = new ArrayList<>();
+		this.umani = new ArrayList<>();
+		this.griglia = new Casella[NUMERO_RIGHE][NUMERO_COLONNE];
 		for (int i = 0; i < NUMERO_RIGHE; i++) {
 			for (int j = 0; j < NUMERO_COLONNE; j++) {
-				griglia[i][j] = null ;
+				griglia[i][j] = null;
 			}
 		}
 	}
-	
+
 	public boolean piazzaTessera(Tessera t, int riga, int colonna) {
-        if (riga < 0 || riga >= NUMERO_RIGHE || colonna < 0 || colonna >= NUMERO_COLONNE) return false;
-        if (griglia[riga][colonna] != null) return false;
+		if (riga < 0 || riga >= NUMERO_RIGHE || colonna < 0 || colonna >= NUMERO_COLONNE)
+			return false;
+		if (griglia[riga][colonna] != null)
+			return false;
 		griglia[riga][colonna] = new Casella(riga, colonna);
-        griglia[riga][colonna].setTessera(t);
-        return true;
-    }
+		griglia[riga][colonna].setTessera(t);
+		return true;
+	}
 
 	public boolean assegnaAlieno(Magazzino magazzino, ColoreAlieno colore) {
 		for (Alieno a : alieni) {
@@ -92,7 +94,8 @@ public class Astronave {
 	public void perditaEquipaggio(int numero) {
 		for (int i = 0; i < numero; i++) {
 			umani.remove(i);
-			// si possno perdere anche alieni facciamo decidere al giocatore? o facciamo che si perodno solo umani?
+			// si possno perdere anche alieni facciamo decidere al giocatore? o facciamo che
+			// si perodno solo umani?
 		}
 	}
 
@@ -101,4 +104,14 @@ public class Astronave {
 		return equipaggio;
 	}
 
+	public int getPotenzaDiFuoco() {
+		int potenzaDiFuoco = ???; // andrebbe assegnata il numero dei cannoni singoli + ilo numero dei cannoni doppi che se vengnono usati viene tolta una batteria
+		return potenzaDiFuoco;
+	}
+
+	public int getPotenzaMotrice() {
+		int potenzaMotrice = ""; // andrebbe assegnata il numero dei motori singoli + il numero dei motori
+								// doppi che se vengnono usati viene tolta una batteria
+		return potenzaMotrice;
+	}
 }

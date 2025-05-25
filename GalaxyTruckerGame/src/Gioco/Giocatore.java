@@ -11,7 +11,7 @@ public class Giocatore {
  
 	public Giocatore(Colore colore) {
 		this.colore = colore;
-		this.astronave = new Astronave();
+		this.astronave = new Astronave(Gioco.getLivello());		//prende il livello da classe Gioco e costruisce in base al livello
 		this.crediti = 0;
 		this.componentiDistrutti = 0;
 	}

@@ -2,7 +2,6 @@ CLASSI FINITE:
 - Dado
 - PosizoneGiocatore
 - Main
-- Crediti?
 - ColoreAlieno
 - Colore
 - Casella
@@ -10,21 +9,22 @@ CLASSI FINITE:
 
 DA FARE:
 aseegna merce si fa in giocatore o in astronave?
+RISPOSTA _DAVIDE_ MEGLIO IN ASTRONAVE CREDO
+-----------------------------------------------------------------------------------------------------------
 in stazione abbandaonata ce la possibilita di gestire le merci con scarico e carico eventuale comfacciamo?
+RISPOSTA _DAVIDE_ SE CE POSTO CARICA, SE SPAZI PIENI CHIEDIAMO SE VUOLE SOSTITUIRE O
+                    PERDERE LA MERCE, SE VUOLE SOSTITUIRE CHIEDIAMO QUALE E FACCIAMO SCAMBIA MERCE
+  -----------------------------------------------------------------------------------------------------------                 
  si possno perdere anche alieni facciamo decidere al giocatore? o facciamo che si perodno solo umani?
+ RISPOSTA: _DAVIDE_ FACCIAMO DECIDERE AL GIOCATORE COSA VUOLE PERDERE
+ -----------------------------------------------------------------------------------------------------------
 
+- Capire se usare le classi astronauta o alieni che non hanno metodi o usarli come singole variabili int
+RISPOSTA _DAVIDE_ UGUALE, GESTIAMO CON LIST<INT> SPERANDO NON SIA UN PROBLEMA;
+                    ALTRA IDEA USARE ENUM EQUIPAGGIO CHE HA UMANI, ALIENI E FARE LIST<EQUIPAGGIO>
+-----------------------------------------------------------------------------------------------------------
+- capire come far costruire la nave anche con i pezzi che si possono girare
+RISPOSTA: _DAVIDE_ METODO RUOTA GIA FATTO
+-----------------------------------------------------------------------------------------------------------
+- Merci fare un metodo per quando si scambiano le merci - - - OKK
 
-
-
-
-
-- Cercare di trovare una soluzione per farsi che il costruttore di magazzino sia meno pesante
-- Astronauta,Batteria e Alieni veogno asseganti con la costeruzine della astronave, qundi meglio forse 
-  che siano a se e non nel magazzino
-- Capire se vogliamo usare le classi astronauta o alieni che non hanno metodi o usarli come singole variabili int
-- capire come far costruire la nave anche con i pezzi che si possono girare 
-- creare una classe turno per gestire il tunro di volo 
-- capire come gestire la posizione dei giocatori all'interno del turno di volo
-- Astronave potrebbe essere figlio di Giocatore cosi da creare l 'astronave in giocatore.
-- Merci fare un metodo per quando si scambiano le merci
-- Creare classe Tessera

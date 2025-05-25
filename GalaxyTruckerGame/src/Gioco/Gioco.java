@@ -8,6 +8,7 @@ public class Gioco {
 	private Mazzo mazzoCarteAvventura;
 	private GestioneTessere tutteLeTessere;
 	private List<Giocatore> ordineDiRotta;
+	private static int livello;
 	
 	public Gioco() {
 		// CREAZIONE 4 GIOCATORI
@@ -25,6 +26,10 @@ public class Gioco {
 	}
 	
 	public void play(){
+		Scanner scanner = new Scanner(System.in);
+    	int livelloDiGioco = chiediLivello(scanner);		//chiede livello
+		Gioco.setLivello(livelloDiGioco);				//lo imposta all'inizio e non cambia più
+
 		System.out.println("INIZIO DEL GIOCO!");
 		
 		//I GIOCATORI SCELGONO PRIMA DI INIZIARE UN GIOCO IL RISPETTIVO COLORE
@@ -54,4 +59,27 @@ public class Gioco {
         //metodo per calcolare i crediti
     }
 	
+	public static int getLivello() {
+        return livello;
+    }
+
+	private static void setLivello(int livelloScelto){
+		livello = livelloScelto;
+	}
+
+    private int chiediLivello(Scanner scanner) {
+		while (true) {
+			try {
+				System.out.print("Scegli il livello di gioco che vuoi usare (1, 2 o 3): ");
+				int livello = Integer.parseInt(scanner.nextLine());
+				if (livello < 1 || livello > 3){
+					throw new IllegalArgumentException();
+				}
+				return livello;
+			} catch (Exception e) {
+				System.out.println("Input non valido. Inserisci 1, 2 o 3.");
+			}
+		}
+	}
+
 }

@@ -4,10 +4,37 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Astronave {
+	private static final boolean[][] MASCHERA_LIVELLO_1 = {
+        // COLONNE:   	5      6      7      8      9
+        /* RIGA 5 */ {false, false, true,  false, false},
+        /* RIGA 6 */ {false, true,  true,  true,  false},
+        /* RIGA 7 */ {true,  true,  true,  true,  true},
+        /* RIGA 8 */ {true,  true,  true,  true,  true},
+        /* RIGA 9 */ {true,  true,  false, true,  true}
+    };
+	private static final boolean[][] MASCHERA_LIVELLO_2 = {
+        // COLONNE:		4      5      6      7      8       9    10
+        /* RIGA 5 */ {false, false, true,  false, true, false, false},
+		/* RIGA 6 */ {false, true,  true,  true,  true, true,  false},
+        /* RIGA 7 */ {true,  true,  true,  true,  true, true,  true},
+        /* RIGA 8 */ {true,  true,  true,  true,  true, true,  true},
+        /* RIGA 9 */ {true,  true,  true,  false, true, true,  true}
+    };
+	private static final boolean[][] MASCHERA_LIVELLO_3 = {
+        // COLONNE:		3      4      5      6      7     8      9     10     11
+    	/* RIGA 4 */ {false, false, false, false, true, false, false, false, false},
+		/* RIGA 5 */ {false, false, false, true,  true, true,  false, false, false},
+		/* RIGA 6 */ {true,  false, true,  true,  true, true,  true,  false, true},
+        /* RIGA 7 */ {true,  true,  true,  true,  true, true,  true,  true,  true},
+        /* RIGA 8 */ {true,  true,  true,  true,  true, true,  true,  true,  true},
+        /* RIGA 9 */ {true,  true,  false, true,  true, true,  false, true,  true}
+    };
+
 	private List<Alieno> alieni;
 	private List<Batteria> batterie;
 	private List<Umano> umani;
 	private Casella[][] griglia;
+	private boolean[][] mascheraValidita;
 	private int livello;
 	private final int NUMERO_COLONNE;
 	private final int NUMERO_RIGHE;
@@ -19,16 +46,19 @@ public class Astronave {
 		case 1:
 			this.NUMERO_COLONNE = 5;
 			this.NUMERO_RIGHE = 5;
+			this.mascheraValidita = MASCHERA_LIVELLO_1;
 			break;
 
 		case 2:
 			this.NUMERO_COLONNE = 7;
 			this.NUMERO_RIGHE = 5;
+			this.mascheraValidita = MASCHERA_LIVELLO_2;
 			break;
 
 		case 3:
 			this.NUMERO_COLONNE = 9;
 			this.NUMERO_RIGHE = 6;
+			this.mascheraValidita = MASCHERA_LIVELLO_3;
 			break;
 
 		default:
@@ -46,15 +76,23 @@ public class Astronave {
 		}
 	}
 
+
+	
 	public boolean piazzaTessera(Tessera t, int riga, int colonna) {
-		if (riga < 0 || riga >= NUMERO_RIGHE || colonna < 0 || colonna >= NUMERO_COLONNE)
+		if (riga < 5 || riga > NUMERO_RIGHE || colonna < 5 || colonna > NUMERO_COLONNE)
 			return false;
-		if (griglia[riga][colonna] != null)
-			return false;
+
+		int r = riga - 5;
+		int c = colonna - 5;
+
+		if (!mascheraValidita[r][c]) return false;
+		if (griglia[riga][colonna] != null) return false;
+
 		griglia[riga][colonna] = new Casella(riga, colonna);
 		griglia[riga][colonna].setTessera(t);
 		return true;
-	}
+    }
+	
 
 	public boolean assegnaAlieno(Magazzino magazzino, ColoreAlieno colore) {
 		for (Alieno a : alieni) {
@@ -104,13 +142,17 @@ public class Astronave {
 		return equipaggio;
 	}
 
+	
+	//DA FARE
 	public int getPotenzaDiFuoco() {
-		int potenzaDiFuoco = ???; // andrebbe assegnata il numero dei cannoni singoli + ilo numero dei cannoni doppi che se vengnono usati viene tolta una batteria
+		int potenzaDiFuoco = 0; // andrebbe assegnata il numero dei cannoni singoli + ilo numero dei cannoni doppi che se vengnono usati viene tolta una batteria
 		return potenzaDiFuoco;
 	}
 
+	
+	//DA FARE
 	public int getPotenzaMotrice() {
-		int potenzaMotrice = ""; // andrebbe assegnata il numero dei motori singoli + il numero dei motori
+		int potenzaMotrice = 0; // andrebbe assegnata il numero dei motori singoli + il numero dei motori
 								// doppi che se vengnono usati viene tolta una batteria
 		return potenzaMotrice;
 	}

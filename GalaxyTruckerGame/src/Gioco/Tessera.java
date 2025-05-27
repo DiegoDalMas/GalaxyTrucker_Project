@@ -1,17 +1,20 @@
 package Gioco;
+import java.util.EnumSet;
 
 public class Tessera {
 	private TipoConnettore[] connettori;	// ALTO, DESTRA, BASSO, SINISTRA
 	private TipoTessera tipo;
     private int capacitaBatteria;       //SOLO SE BATTERIA
     private int capacitaStiva;         //SOLO SE STIVA, STIVA_SPECIALE
+    private EnumSet<Direzione> direzione;
     
     public Tessera(TipoConnettore alto, TipoConnettore destra, TipoConnettore basso, TipoConnettore sinistra,
-            TipoTessera tipo, int capacitaBatteria, int capacitaStiva) {
+            TipoTessera tipo, int capacitaBatteria, int capacitaStiva, EnumSet<Direzione> direzione) {
     	this.connettori = new TipoConnettore[] {alto, destra, basso, sinistra};
     	this.tipo = tipo;
     	this.capacitaBatteria = capacitaBatteria;
     	this.capacitaStiva = capacitaStiva;
+        this.direzione = direzione;
     }
     
     public TipoConnettore[] getConnettori() {
@@ -28,6 +31,14 @@ public class Tessera {
 
     public int getCapacitaStiva(){
         return capacitaStiva;
+    }
+
+    public EnumSet<Direzione> getDirezione() {
+        return direzione;
+    }
+
+    public void setDirezione(EnumSet<Direzione> direzione) {
+        this.direzione = direzione;
     }
     
     public void ruotaSensoOrario() {

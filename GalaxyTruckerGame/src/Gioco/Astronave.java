@@ -43,27 +43,26 @@ public class Astronave {
 		this.livello = livello;
 
 		switch (this.livello) {
-		case 1:
-			this.NUMERO_COLONNE = 5;
-			this.NUMERO_RIGHE = 5;
-			this.mascheraValidita = MASCHERA_LIVELLO_1;
-			break;
+			case 1:
+				this.NUMERO_COLONNE = 5;
+				this.NUMERO_RIGHE = 5;
+				this.mascheraValidita = MASCHERA_LIVELLO_1;
+				break;
 
-		case 2:
-			this.NUMERO_COLONNE = 7;
-			this.NUMERO_RIGHE = 5;
-			this.mascheraValidita = MASCHERA_LIVELLO_2;
-			break;
+			case 2:
+				this.NUMERO_COLONNE = 7;
+				this.NUMERO_RIGHE = 5;
+				this.mascheraValidita = MASCHERA_LIVELLO_2;
+				break;
 
-		case 3:
-			this.NUMERO_COLONNE = 9;
-			this.NUMERO_RIGHE = 6;
-			this.mascheraValidita = MASCHERA_LIVELLO_3;
-			break;
+			case 3:
+				this.NUMERO_COLONNE = 9;
+				this.NUMERO_RIGHE = 6;
+				this.mascheraValidita = MASCHERA_LIVELLO_3;
+				break;
 
-		default:
-			throw new IllegalArgumentException("livello non valido: ");
-
+			default:
+				throw new IllegalArgumentException("livello non valido: ");
 		}
 		this.alieni = new ArrayList<>();
 		this.batterie = new ArrayList<>();
@@ -79,13 +78,10 @@ public class Astronave {
 
 	
 	public boolean piazzaTessera(Tessera t, int riga, int colonna) {
-		if (riga < 5 || riga > NUMERO_RIGHE || colonna < 5 || colonna > NUMERO_COLONNE)
+		if (riga < 0 || riga >= NUMERO_RIGHE || colonna < 0 || colonna >= NUMERO_COLONNE)
 			return false;
 
-		int r = riga - 5;
-		int c = colonna - 5;
-
-		if (!mascheraValidita[r][c]) return false;
+		if (!mascheraValidita[riga][colonna]) return false;
 		if (griglia[riga][colonna] != null) return false;
 
 		griglia[riga][colonna] = new Casella(riga, colonna);
@@ -160,4 +156,99 @@ public class Astronave {
 		int connettoriEsposti=0;
 		return connettoriEsposti;
 	}
+	
+	public void stampaGrigliaAstronave() {
+		System.out.print("   ");
+		for (int col = 0; col < NUMERO_COLONNE; col++) {
+			System.out.print(col + "  ");
+		}
+		System.out.println();
+
+		for (int i = 0; i < NUMERO_RIGHE; i++) {
+			System.out.print(i + ": ");
+			for (int j = 0; j < NUMERO_COLONNE; j++) {
+				if (mascheraValidita[i][j]) {
+					if (griglia[i][j] != null && griglia[i][j].getTessera() != null) {
+						Tessera t = griglia[i][j].getTessera();
+						TipoTessera tipo = griglia[i][j].getTessera().getTipo();
+						switch (tipo) {
+							case SCUDO:
+								System.out.print("[🛡️" + getFrecceDirezione(t) + "]");
+								break;
+							
+							case CABINA:
+								System.out.print("[⬜]");
+								break;
+							
+							case PROPULSORE_SINGOLO:
+								System.out.print("[🚀]");
+								break;
+
+							case PROPULSORE_DOPPIO:
+								System.out.print("[🚀🚀]");
+								break;
+
+							case CANNONE_SINGOLO:
+								System.out.print("[🔫" + getFrecceDirezione(t) + "]");
+								break;
+
+							case CANNONE_DOPPIO:
+								System.out.print("[🔫🔫" + getFrecceDirezione(t) + "]");
+								break;
+							
+							case BATTERIA:
+								System.out.print("[🔋]");
+								break;
+
+							case STIVA:
+								System.out.print("[📦]");
+								break;
+
+							case STIVA_SPECIALE:
+								System.out.print("[🎁]");
+								break;
+							
+							case MODULI_VITALI_MARRONI:
+								System.out.print("[🟫]");
+								break;
+							
+							case MODULI_VITALI_VIOLA:
+								System.out.println("[🟪]");
+								break;
+							
+							case MODULI_STRUTTURALI:
+								System.out.println("[⌘]");
+								break;
+							
+							default:
+								System.out.print("[❓]");
+								break;
+						}
+					} else {
+						System.out.print("[ ]"); // valida ma vuota
+					}
+				} else {
+					System.out.print(" . "); // non valida, lascia vuoto
+				}
+			}
+			System.out.println();
+		}
+	}
+	
+	public String getFrecceDirezione(Tessera t) {
+		if (t == null || t.getDirezione() == null || t.getDirezione().isEmpty()) return "";
+
+		StringBuilder sb = new StringBuilder();
+		for (Direzione dir : t.getDirezione()) {
+			switch (dir) {
+				case NORD -> sb.append("↑");
+				case EST  -> sb.append("→");
+				case SUD  -> sb.append("↓");
+				case OVEST-> sb.append("←");
+			}
+		}
+		return sb.toString();
+	}
+	
+	
 }

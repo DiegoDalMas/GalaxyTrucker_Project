@@ -48,14 +48,29 @@ public class Tessera {
         connettori[2] = connettori[1];
         connettori[1] = connettori[0];
         connettori[0] = temp;
+
+        //rotazione anche delle direzioni
+        if (direzione != null && !direzione.isEmpty()) {
+            EnumSet<Direzione> nuoveDirezioni = EnumSet.noneOf(Direzione.class);
+            for (Direzione d : direzione) {
+                switch (d) {
+                    case NORD -> nuoveDirezioni.add(Direzione.EST);
+                    case EST -> nuoveDirezioni.add(Direzione.SUD);
+                    case SUD -> nuoveDirezioni.add(Direzione.OVEST);
+                    case OVEST -> nuoveDirezioni.add(Direzione.NORD);
+                }
+            }
+            direzione = nuoveDirezioni;
+        }
     }
     
-    public void mostraTessera(){
+    public void mostraTessera() {
         System.out.println("\nTessera Dettagli:");
         System.out.println("Tipo: " + this.getTipo());
         TipoConnettore[] c = this.getConnettori();
         System.out.println("Connettori - ALTO: " + c[0] + ", DESTRA: " + c[1] + ", BASSO: " + c[2] + ", SINISTRA: " + c[3]);
         if (this.getCapacitaBatteria() > 0) System.out.println("Capacità Batteria: " + this.getCapacitaBatteria());
         if (this.getCapacitaStiva() > 0) System.out.println("Capacità Stiva: " + this.getCapacitaStiva());
+        if (this.getDirezione() != null) System.out.println("Direzione: " + this.getDirezione());
     }
 }

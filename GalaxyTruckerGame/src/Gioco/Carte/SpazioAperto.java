@@ -20,7 +20,7 @@ public class SpazioAperto extends Carta{
         	cond=in.nextBoolean();
         	if(cond==true) {
         		GiorniGuad= leader.getAstronave().getPotenzaMotrice();
-        	  giocatori.aggiornaPosizioni(giorniGuad);
+        	  giocatori.muoviGiocatore(GiorniGuad);
         	}
         }
     }

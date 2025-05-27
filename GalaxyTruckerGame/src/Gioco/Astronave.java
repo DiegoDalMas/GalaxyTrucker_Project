@@ -156,4 +156,8 @@ public class Astronave {
 								// doppi che se vengnono usati viene tolta una batteria
 		return potenzaMotrice;
 	}
+	public int connettoriEsposti() {
+		int connettoriEsposti=0;
+		return connettoriEsposti;
+	}
 }

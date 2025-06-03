@@ -74,8 +74,6 @@ public class Astronave {
 			}
 		}
 	}
-
-
 	
 	//METODO PER INSERIRE UNA TESSERA NELLA ASTRONAVE
 	public boolean piazzaTessera(Tessera t, int riga, int colonna) {
@@ -95,8 +93,6 @@ public class Astronave {
 		return true;
     }
 	
-	
-
 	public boolean assegnaAlieno(Magazzino magazzino, ColoreAlieno colore) {
 		for (Alieno a : alieni) {
 			if (a.getColore() == colore) {
@@ -132,6 +128,8 @@ public class Astronave {
 		return false;
 	}
 
+	
+	//CONTROLLARE
 	public void perditaEquipaggio(int numero) {
 		for (int i = 0; i < numero; i++) {
 			umani.remove(i);
@@ -139,20 +137,30 @@ public class Astronave {
 			// si perodno solo umani?
 		}
 	}
+	//DA FARE
 	public void subisciDanno() {
-		da fare;
-	}
-	public void assegnaMerce(Merci colore) {
-		da fare;
-	}
-	public void perditaMerce(int qta) {
-		da fare;
+		
 	}
 	
-	public Tessera getTessera(int x, int y) {
-		Tessera t = griglia[x][y].;
-		return t;
-				}
+	//DA FARE
+	public void assegnaMerce(Merci colore) {
+		
+	}
+	
+	//DA FARE
+	public void perditaMerce(int qta) {
+		
+	}
+	
+	public Tessera getTesseraDaRigaColonna(int riga, int colonna) {
+        if (riga < 0 || riga >= NUMERO_RIGHE || colonna < 0 || colonna >= NUMERO_COLONNE)
+            return null;
+        Casella casella = griglia[riga][colonna];
+        if (casella != null) {
+            return casella.getTessera();
+        }
+        return null;
+    }
 
 	public int getEquipaggio() {
 		int equipaggio = alieni.size() + umani.size();
@@ -232,8 +240,6 @@ public class Astronave {
 			}
 		}
 	}
-	
-	
 	
 	public void stampaGrigliaAstronave() {
 		System.out.print("   ");
@@ -327,7 +333,6 @@ public class Astronave {
 		}
 		return sb.toString();
 	}
-	
 	
 	private boolean connettoriCompatibili(Tessera nuova, int riga, int colonna) {
 		// Controlla connettore a NORD

@@ -242,97 +242,71 @@ public class Astronave {
 	}
 	
 	public void stampaGrigliaAstronave() {
-		System.out.print("   ");
+		System.out.print("\t");
 		for (int col = 0; col < NUMERO_COLONNE; col++) {
-			System.out.print(col + "  ");
+			System.out.print(col + "\t");
 		}
 		System.out.println();
 
 		for (int i = 0; i < NUMERO_RIGHE; i++) {
-			System.out.print(i + ": ");
+			System.out.print(i + "\t");
 			for (int j = 0; j < NUMERO_COLONNE; j++) {
 				if (mascheraValidita[i][j]) {
 					if (griglia[i][j] != null && griglia[i][j].getTessera() != null) {
 						Tessera t = griglia[i][j].getTessera();
-						TipoTessera tipo = griglia[i][j].getTessera().getTipo();
+						TipoTessera tipo = t.getTipo();
 						switch (tipo) {
 							case SCUDO:
-								System.out.print("[🛡️" + getFrecceDirezione(t) + "]");
+								System.out.print("[ SC ]\t");
 								break;
-							
 							case CABINA:
-								System.out.print("[⬜]");
+								System.out.print("[ CA ]\t");
 								break;
-							
 							case PROPULSORE_SINGOLO:
-								System.out.print("[🚀]");
+								System.out.print("[PR.S]\t");
 								break;
-
 							case PROPULSORE_DOPPIO:
-								System.out.print("[🚀🚀]");
+								System.out.print("[PR.D]\t");
 								break;
-
 							case CANNONE_SINGOLO:
-								System.out.print("[🔫" + getFrecceDirezione(t) + "]");
+								System.out.print("[ CS ]\t");
 								break;
-
 							case CANNONE_DOPPIO:
-								System.out.print("[🔫🔫" + getFrecceDirezione(t) + "]");
+								System.out.print("[ CD ]\t");
 								break;
-							
 							case BATTERIA:
-								System.out.print("[🔋]");
+								System.out.print("[ BA ] \t");
 								break;
-
 							case STIVA:
-								System.out.print("[📦]");
+								System.out.print("[ ST ]\t");
 								break;
-
 							case STIVA_SPECIALE:
-								System.out.print("[🎁]");
+								System.out.print("[ST++]\t");
 								break;
-							
 							case MODULI_VITALI_MARRONI:
-								System.out.print("[🟫]");
+								System.out.print("[AL_M]\t");
 								break;
-							
 							case MODULI_VITALI_VIOLA:
-								System.out.println("[🟪]");
+								System.out.print("[AL_V]\t");
 								break;
-							
 							case MODULI_STRUTTURALI:
-								System.out.println("[⌘]");
+								System.out.print("[CONN]\t");
 								break;
-							
 							default:
-								System.out.print("[❓]");
+								System.out.print("[❓]\t");
 								break;
 						}
 					} else {
-						System.out.print("[ ]"); // valida ma vuota
+						System.out.print("[    ]\t"); // valida ma vuota
 					}
 				} else {
-					System.out.print(" . "); // non valida, lascia vuoto
+					System.out.print("\t"); // non valida, spazio vuoto
 				}
 			}
 			System.out.println();
 		}
 	}
 	
-	public String getFrecceDirezione(Tessera t) {
-		if (t == null || t.getDirezione() == null || t.getDirezione().isEmpty()) return "";
-
-		StringBuilder sb = new StringBuilder();
-		for (Direzione dir : t.getDirezione()) {
-			switch (dir) {
-				case NORD -> sb.append("↑");
-				case EST  -> sb.append("→");
-				case SUD  -> sb.append("↓");
-				case OVEST-> sb.append("←");
-			}
-		}
-		return sb.toString();
-	}
 	
 	private boolean connettoriCompatibili(Tessera nuova, int riga, int colonna) {
 		// Controlla connettore a NORD

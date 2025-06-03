@@ -11,7 +11,7 @@ public class Pianeti extends Carta{
 
     @Override
     public void applicaEffetto(List<Giocatore> giocatori, Giocatore leader){
-        System.out.println("implementare");
+        System.out.println("CARTA PIANETI");
     }
     
 }

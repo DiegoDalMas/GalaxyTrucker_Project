@@ -3,14 +3,18 @@ package Gioco.Carte;
 import java.util.List;
 
 import Gioco.Dado;
+import Gioco.Direzione;
 import Gioco.Giocatore;
+import Gioco.Tessera;
+import Gioco.TipoConnettore;
+import Gioco.TipoTessera;
 
 public class PioggiaDiMeteoriti extends Carta {
 	private Dado dado;
 	private int numMeteoriti;
 	private Meteorite[] meteoriti;
 
-	public PioggiaDiMeteoriti(int numMeteoriti, String direzione, int grandezza) {
+	public PioggiaDiMeteoriti(int numMeteoriti, Direzione direzione, int grandezza) {
 		this.numMeteoriti = numMeteoriti;
 		for (int i = 0; i < numMeteoriti; i++) {
 			meteoriti[i] = new Meteorite(direzione, grandezza);
@@ -21,50 +25,114 @@ public class PioggiaDiMeteoriti extends Carta {
 	public void applicaEffetto(List<Giocatore> giocatori, Giocatore leader) {
 		System.out.println("CARTA PIOGGIA DI METEORITI");
 		for (int j = 0; j < numMeteoriti; j++) {
-			String direzione = meteoriti[j].getDirezione();
+			Direzione direzione = meteoriti[j].getDirezione();
 			int dimensione = meteoriti[j].getGrandezza();
-			switch (direzione) {
-			case "left": {
-				int y = dado.tira();
-				if (dimensione == 0) {
-					// capire bene come fare contollare se ha lato liscio opppure se ha scudi ma
-					// deve spendere una batteria
+			for (Giocatore g : giocatori) {
+				switch (direzione) {
+				case EST: {
+					int y = dado.tira();
+					Tessera puntoColpito = g.getAstronave().getTessera(0, y);
+					TipoConnettore[] connettore = puntoColpito.getConnettori();
+					if (dimensione == 0) {
+						// capire bene come fare contollare se ha lato liscio opppure se ha scudi ma
+						if (connettore[3] != TipoConnettore.LISCIO) {
+							System.out.println("COLPITO");
+							// NON CONTROLLA GLI SCUDI
+							g.getAstronave().subisciDanno();
+						} else {
+							System.out.println("SEI SALVO");
+						}
 
-				} else {
-					// capire bene come fare se ha i cannoni può farli esplodere
+					} else {
+						if (puntoColpito.getTipo() == TipoTessera.CANNONE_SINGOLO
+								|| puntoColpito.getTipo() == TipoTessera.CANNONE_DOPPIO) {
+							System.out.println("SEI SALVO");
+						} else {
+							System.out.println("COLPITO");
+							g.getAstronave().subisciDanno();
+						}
+						// capire bene come fare se ha i cannoni può farli esplodere
+					}
 				}
-			}
-			case "right": {
-				int y = dado.tira();
-				if (dimensione == 0) {
-					// capire bene come fare contollare se ha lato liscio opppure se ha scudi ma
-					// deve spendere una batteria
+				case OVEST: {
+					int y = dado.tira();
+					Tessera puntoColpito = g.getAstronave().getTessera(0, y);
+					TipoConnettore[] connettore = puntoColpito.getConnettori();
+					if (dimensione == 0) {
+						// capire bene come fare contollare se ha lato liscio opppure se ha scudi ma
+						if (connettore[1] != TipoConnettore.LISCIO) {
+							System.out.println("COLPITO");
+							// NON CONTROLLA GLI SCUDI
+							g.getAstronave().subisciDanno();
+						} else {
+							System.out.println("SEI SALVO");
+						}
 
-				} else {
-					// capire bene come fare se ha i cannoni in quella direzione può farli esplodere
+					} else {
+						if (puntoColpito.getTipo() == TipoTessera.CANNONE_SINGOLO
+								|| puntoColpito.getTipo() == TipoTessera.CANNONE_DOPPIO) {
+							System.out.println("SEI SALVO");
+						} else {
+							System.out.println("COLPITO");
+							g.getAstronave().subisciDanno();
+						}
+						// capire bene come fare se ha i cannoni può farli esplodere
+					}
 				}
-			}
-				;
-			case "front": {
-				int x = dado.tira();
-				if (dimensione == 0) {
-					// capire bene come fare contollare se ha lato liscio opppure se ha scudi ma
-					// deve spendere una batteria
+					;
+				case NORD: {
+					int y = dado.tira();
+					Tessera puntoColpito = g.getAstronave().getTessera(0, y);
+					TipoConnettore[] connettore = puntoColpito.getConnettori();
+					if (dimensione == 0) {
+						// capire bene come fare contollare se ha lato liscio opppure se ha scudi ma
+						if (connettore[0] != TipoConnettore.LISCIO) {
+							System.out.println("COLPITO");
+							// NON CONTROLLA GLI SCUDI
+							g.getAstronave().subisciDanno();
+						} else {
+							System.out.println("SEI SALVO");
+						}
 
-				} else {
-					// capire bene come fare se ha i cannoni può farli esplodere
+					} else {
+						if (puntoColpito.getTipo() == TipoTessera.CANNONE_SINGOLO
+								|| puntoColpito.getTipo() == TipoTessera.CANNONE_DOPPIO) {
+							System.out.println("SEI SALVO");
+						} else {
+							System.out.println("COLPITO");
+							g.getAstronave().subisciDanno();
+						}
+						// capire bene come fare se ha i cannoni può farli esplodere
+					}
 				}
-			};
-			case "behind": {
-				int x = dado.tira();
-				if (dimensione == 0) {
-					// capire bene come fare contollare se ha lato liscio opppure se ha scudi ma
-					// deve spendere una batteria
+					;
+				case SUD: {
+					int y = dado.tira();
+					Tessera puntoColpito = g.getAstronave().getTessera(0, y);
+					TipoConnettore[] connettore = puntoColpito.getConnettori();
+					if (dimensione == 0) {
+						// capire bene come fare contollare se ha lato liscio opppure se ha scudi ma
+						if (connettore[2] != TipoConnettore.LISCIO) {
+							System.out.println("COLPITO");
+							// NON CONTROLLA GLI SCUDI
+							g.getAstronave().subisciDanno();
+						} else {
+							System.out.println("SEI SALVO");
+						}
 
-				} else {
-					// capire bene come fare se ha i cannoni può farli esplodere
+					} else {
+						if (puntoColpito.getTipo() == TipoTessera.CANNONE_SINGOLO
+								|| puntoColpito.getTipo() == TipoTessera.CANNONE_DOPPIO) {
+							System.out.println("SEI SALVO");
+						} else {
+							System.out.println("COLPITO");
+							g.getAstronave().subisciDanno();
+						}
+						// capire bene come fare se ha i cannoni può farli esplodere
+					}
 				}
-			};
+					;
+				}
 			}
 		}
 	}

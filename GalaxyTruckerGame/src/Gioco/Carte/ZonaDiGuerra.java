@@ -11,7 +11,7 @@ public class ZonaDiGuerra extends Carta {
 
 	@Override
 	public void applicaEffetto(List<Giocatore> giocatori, Giocatore leader) {
-		// TODO Auto-generated method stub
+		System.out.println("CARTA ZONA DI GUERRA");
 
 	}
 }

@@ -19,19 +19,21 @@ public class NaveAbbandonata extends Carta {
 	@Override
 	public void applicaEffetto(List<Giocatore> giocatori, Giocatore leader) {
 		System.out.println("CARTA NAVE ABBANDONATA");
+		int i=0;
 		do {
-			System.out.println("giocatore " + leader.getColore() + "vuoi fermarti?"); // richiesta al giocatore se vuole																// fermarsi
+			System.out.println("giocatore " + giocatori.get(i).getColore() + "vuoi fermarti?"); // richiesta al giocatore se vuole																// fermarsi
 			conferma = in.nextBoolean();
 			if(conferma==true) {
-				int equipaggio = leader.getAstronave().getEquipaggio();
+				int equipaggio = giocatori.get(i).getAstronave().getEquipaggio();
 				if (equipaggio > numeroCarta) {	
-					leader.assegnaCrediti(crediti);
-					leader.getAstronave().perditaEquipaggio(numeroCarta);
+					giocatori.get(i).assegnaCrediti(crediti);
+					giocatori.get(i).getAstronave().perditaEquipaggio(numeroCarta);
 				}else {
 					System.out.println("numero di equipaggio insufficente");
 					conferma=false;
 				}
 			}
+			i++;
 		} while (conferma == false);
 		giocatori.aggiornaPosizioni(giorniPersi);
 	}

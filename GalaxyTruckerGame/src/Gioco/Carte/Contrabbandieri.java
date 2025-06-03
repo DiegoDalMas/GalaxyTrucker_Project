@@ -3,12 +3,13 @@ package Gioco.Carte;
 import java.util.List;
 
 import Gioco.Giocatore;
+import Gioco.Merci;
 
 public class Contrabbandieri extends Carta {
 	private boolean conferma =false;
 	private int potFuocoContrabbandieri;
 	private int penalita;
-	private int ricompensa;
+	private Merci ricompensa;
 	public Contrabbandieri() {
 
 	}
@@ -21,10 +22,10 @@ public class Contrabbandieri extends Carta {
 				int potFuocoGiocatore = g.getAstronave().getPotenzaDiFuoco();
 				if (potFuocoContrabbandieri > potFuocoGiocatore) {
 					System.out.println("HAI PERSO");
-					g.getAstronave().perditaMerci(penalita);
+					g.getAstronave().perditaMerce(penalita);
 				} else if (potFuocoContrabbandieri < potFuocoGiocatore) {
 					System.out.println("HAI VINTO");
-                   g.getAstronave().guadagnaMerci(ricompensa);
+                   g.getAstronave().assegnaMerce(ricompensa);
                    conferma=true;
 				}else {
 					System.out.println("HAI PAREGGIATO");

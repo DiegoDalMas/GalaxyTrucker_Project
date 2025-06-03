@@ -139,6 +139,20 @@ public class Astronave {
 			// si perodno solo umani?
 		}
 	}
+	public void subisciDanno() {
+		da fare;
+	}
+	public void assegnaMerce(Merci colore) {
+		da fare;
+	}
+	public void perditaMerce(int qta) {
+		da fare;
+	}
+	
+	public Tessera getTessera(int x, int y) {
+		Tessera t = griglia[x][y].;
+		return t;
+				}
 
 	public int getEquipaggio() {
 		int equipaggio = alieni.size() + umani.size();

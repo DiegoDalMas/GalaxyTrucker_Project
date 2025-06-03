@@ -8,4 +8,6 @@ public enum TipoConnettore {
         if (this == UNIVERSALE || c == UNIVERSALE) return true;
         return this == c; // SINGOLO con SINGOLO, DOPPIO con DOPPIO
     }
+    
 }
+

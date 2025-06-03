@@ -15,12 +15,13 @@ public class SpazioAperto extends Carta{
 
     @Override
     public void applicaEffetto(List<Giocatore> giocatori, Giocatore leader){
-        for(int i=0;i<giocatori.size();i++) {
+    	System.out.println("CARTA SPAZIO APERTO");
+    	for(Giocatore g : giocatori) {
         	System.out.println("Vuoi avanzare? ");
         	cond=in.nextBoolean();
         	if(cond==true) {
-        		GiorniGuad= leader.getAstronave().getPotenzaMotrice();
-        	  giocatori.muoviGiocatore(GiorniGuad);
+        		GiorniGuad= g.getAstronave().getPotenzaMotrice();
+        	  g.muoviGiocatore(GiorniGuad);
         	}
         }
     }

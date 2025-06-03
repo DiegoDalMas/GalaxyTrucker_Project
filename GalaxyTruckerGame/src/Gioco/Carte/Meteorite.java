@@ -1,15 +1,17 @@
 package Gioco.Carte;
 
+import Gioco.Direzione;
+
 public class Meteorite {
-	private String direzione;
+	private Direzione direzione;
 	private int grandezza;
 
-	public Meteorite(String direzione, int grandezza) {
+	public Meteorite(Direzione direzione, int grandezza) {
 		this.direzione = direzione;
 		this.grandezza = grandezza;
 	}
 
-	public String getDirezione() {
+	public Direzione getDirezione() {
 		return direzione;
 	}
 

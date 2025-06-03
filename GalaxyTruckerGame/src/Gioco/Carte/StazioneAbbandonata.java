@@ -22,21 +22,23 @@ public class StazioneAbbandonata extends Carta {
 	@Override
 	public void applicaEffetto(List<Giocatore> giocatori, Giocatore leader) {
 		System.out.println("CARTA STAZIONE ABBANDONATA");
+		int i=0;
 		do {
-			System.out.println("giocatore " + leader.getColore() + "vuoi fermarti?"); // richiesta al giocatore se vuole fermarsi
+			System.out.println("giocatore " + giocatori.get(i).getColore() + "vuoi fermarti?"); // richiesta al giocatore se vuole fermarsi
 			conferma = in.nextBoolean();
 			if (conferma == true) {
-				int equipaggio = leader.getAstronave().getEquipaggio();
+				int equipaggio = giocatori.get(i).getAstronave().getEquipaggio();
 				if (equipaggio > numeroCarta) {
-					leader.assegnaMerce(coloreMerci);// prende le merci dalla carta e le assegna al giocatore oppure alla sua
+					giocatori.get(i).getAstronave().assegnaMerce(coloreMerci);// prende le merci dalla carta e le assegna al giocatore oppure alla sua
 					//AGGIORNA LEADER     // asrtronave?
 				} else {
 					System.out.print("non hai abbastanza equipaggio");
 					conferma = false;
 				}
 			}
+			i++;
 		} while (conferma == false);
-		giocatori.aggiornaPosizionni(giorniPersi);// aggiornare le posizioni
+		giocatori.aggiornaPosizioni(giorniPersi);// aggiornare le posizioni
 	}
 
 }

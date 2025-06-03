@@ -157,6 +157,34 @@ public class Astronave {
 		return connettoriEsposti;
 	}
 	
+	public void assegnazioneMaterialeGiocatore(Magazzino m){
+		for(int i=0; i<griglia.length; i++){
+			for(int j=0; j<griglia[i].length; j++){
+				Casella casella = griglia[i][j];
+				if(casella != null && casella.getTessera() != null){
+					Tessera t = casella.getTessera();
+					switch (t.getTipo()) {
+						case CABINA:
+							for(int k=0; k<2; k++){
+								assegnaUmano(m);
+							}
+							break;
+						case BATTERIA:
+							int cariche = t.getCapacitaBatteria();
+							for (int k = 0; k < cariche; k++) {
+								assegnaBatteria(m);
+							}
+							break;
+						default:
+							break;
+					}
+				}
+			}
+		}
+	}
+	
+	
+	
 	public void stampaGrigliaAstronave() {
 		System.out.print("   ");
 		for (int col = 0; col < NUMERO_COLONNE; col++) {

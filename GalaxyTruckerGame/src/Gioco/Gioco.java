@@ -6,9 +6,11 @@ public class Gioco {
 	private List<Giocatore> giocatori;
 	private Magazzino magazzino;
 	private Mazzo mazzoCarteAvventura;
+	private PlanciaVolo plancia;
 	private GestioneTessere tutteLeTessere;
 	private List<Giocatore> ordineDiRotta;
 	private static int livello;
+	private Dado dado;
 	
 	public Gioco() {
 		// CREAZIONE 4 GIOCATORI
@@ -19,10 +21,11 @@ public class Gioco {
         giocatori.add(new Giocatore(Colore.GIALLO));
 
 		this.magazzino = new Magazzino();
-		this.mazzoCarteAvventura = new Mazzo("carteAvventura.csv");	//crea Mazzo con le carte già mischiato
+		this.mazzoCarteAvventura = new Mazzo("carteAvventura.csv");		//crea Mazzo con le carte già mischiato
 		this.tutteLeTessere = new GestioneTessere("fileTessere.csv");
 
 		this.ordineDiRotta = new ArrayList<>();
+		this.plancia = new PlanciaVolo();
 	}
 	
 	public void play(){
@@ -32,7 +35,7 @@ public class Gioco {
 
 		System.out.println("INIZIO DEL GIOCO!");
 		
-		//I GIOCATORI SCELGONO PRIMA DI INIZIARE UN GIOCO IL RISPETTIVO COLORE
+		//I GIOCATORI SCELGONO PRIMA DI INIZIARE IL GIOCO IL RISPETTIVO COLORE
 		//L'ORDINE DI PARTENZA SARA CASUALE
 		Collections.shuffle(giocatori);
 		this.ordineDiRotta = new ArrayList<>(giocatori);
@@ -46,6 +49,11 @@ public class Gioco {
 		CostruzioneSimulatore costruzione = new CostruzioneSimulatore(giocatori, tutteLeTessere);
 		costruzione.avviaCostruzione();
 
+		//ASSEGNAMO AD OGNI GIOCATORE BATTERIE/UMANI/ECC..
+		for (Giocatore g : giocatori) {
+			g.getAstronave().assegnazioneMaterialeGiocatore(magazzino);
+		}
+		
 		//FASE DI VOLO
 		GestioneTurni volo = new GestioneTurni(giocatori, mazzoCarteAvventura);
         volo.avviaFaseDiVolo();

@@ -159,8 +159,37 @@ public class Astronave {
 								// doppi che se vengnono usati viene tolta una batteria
 		return potenzaMotrice;
 	}
-	public int connettoriEsposti() {
-		int connettoriEsposti=0;
+	
+	public int connettoriEsposti(){
+		int connettoriEsposti = 0;
+		for(int riga=0; riga<NUMERO_RIGHE; riga++){
+			for(int colonna=0; colonna<NUMERO_COLONNE; colonna++){
+				Casella casella = griglia[riga][colonna];
+				if(casella == null || casella.getTessera() == null) continue;
+
+				Tessera t = casella.getTessera();
+				if (riga == 0 || griglia[riga - 1][colonna] == null || griglia[riga - 1][colonna].getTessera() == null) {		//CONTROLLA SE SOPRA LA TESSERA C'E "SPAZIO"
+					if (t.getConnettoreSuLato(Direzione.NORD) != TipoConnettore.LISCIO) {
+						connettoriEsposti++;
+					}
+				}
+				if (riga == NUMERO_RIGHE - 1 || griglia[riga + 1][colonna] == null || griglia[riga + 1][colonna].getTessera() == null) {
+					if (t.getConnettoreSuLato(Direzione.SUD) != TipoConnettore.LISCIO) {
+						connettoriEsposti++;
+					}
+				}
+				if (colonna == NUMERO_COLONNE - 1 || griglia[riga][colonna + 1] == null || griglia[riga][colonna + 1].getTessera() == null) {
+					if (t.getConnettoreSuLato(Direzione.EST) != TipoConnettore.LISCIO) {
+						connettoriEsposti++;
+					}
+				}
+				if (colonna == 0 || griglia[riga][colonna - 1] == null || griglia[riga][colonna - 1].getTessera() == null) {
+					if (t.getConnettoreSuLato(Direzione.OVEST) != TipoConnettore.LISCIO) {
+						connettoriEsposti++;
+					}
+				}
+			}
+		}
 		return connettoriEsposti;
 	}
 	

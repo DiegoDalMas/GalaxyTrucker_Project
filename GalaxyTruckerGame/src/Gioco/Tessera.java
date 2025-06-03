@@ -33,6 +33,15 @@ public class Tessera {
         return capacitaStiva;
     }
 
+    public TipoConnettore getConnettoreSuLato(Direzione d) {
+        return switch (d) {
+            case NORD -> connettori[0];
+            case EST -> connettori[1];
+            case SUD -> connettori[2];
+            case OVEST -> connettori[3];
+        };
+    }
+    
     public EnumSet<Direzione> getDirezione() {
         return direzione;
     }

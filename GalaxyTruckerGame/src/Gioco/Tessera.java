@@ -34,12 +34,25 @@ public class Tessera {
     }
 
     public TipoConnettore getConnettoreSuLato(Direzione d) {
-        return switch (d) {
-            case NORD -> connettori[0];
-            case EST -> connettori[1];
-            case SUD -> connettori[2];
-            case OVEST -> connettori[3];
-        };
+        TipoConnettore risultato;
+        switch (d) {
+            case NORD:
+                risultato = connettori[0];
+                break;
+            case EST:
+                risultato = connettori[1];
+                break;
+            case SUD:
+                risultato = connettori[2];
+                break;
+            case OVEST:
+                risultato = connettori[3];
+                break;
+            default:
+                throw new IllegalArgumentException("Direzione non valida: " + d);
+        }
+
+        return risultato;
     }
     
     public EnumSet<Direzione> getDirezione() {

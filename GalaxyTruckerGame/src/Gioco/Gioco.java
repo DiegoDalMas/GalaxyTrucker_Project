@@ -13,17 +13,9 @@ public class Gioco {
 	private Dado dado;
 	
 	public Gioco() {
-		// CREAZIONE 4 GIOCATORI
-		this.giocatori = new ArrayList<>();
-        giocatori.add(new Giocatore(Colore.BLU));
-        giocatori.add(new Giocatore(Colore.ROSSO));
-        giocatori.add(new Giocatore(Colore.VERDE));
-        giocatori.add(new Giocatore(Colore.GIALLO));
-
 		this.magazzino = new Magazzino();
 		this.mazzoCarteAvventura = new Mazzo("carteAvventura.csv");		//crea Mazzo con le carte già mischiato
 		this.tutteLeTessere = new GestioneTessere("fileTessere.csv");
-
 		this.ordineDiRotta = new ArrayList<>();
 		this.plancia = new PlanciaVolo();
 	}
@@ -33,6 +25,13 @@ public class Gioco {
     	int livelloDiGioco = chiediLivello(scanner);		//chiede livello
 		Gioco.setLivello(livelloDiGioco);				//lo imposta all'inizio e non cambia più
 
+		// CREAZIONE 4 GIOCATORI
+		this.giocatori = new ArrayList<>();
+        giocatori.add(new Giocatore(Colore.BLU));
+        giocatori.add(new Giocatore(Colore.ROSSO));
+        giocatori.add(new Giocatore(Colore.VERDE));
+        giocatori.add(new Giocatore(Colore.GIALLO));
+		
 		System.out.println("INIZIO DEL GIOCO!");
 		
 		//I GIOCATORI SCELGONO PRIMA DI INIZIARE IL GIOCO IL RISPETTIVO COLORE

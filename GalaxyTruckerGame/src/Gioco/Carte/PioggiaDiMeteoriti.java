@@ -31,7 +31,7 @@ public class PioggiaDiMeteoriti extends Carta {
 				switch (direzione) {
 				case EST: {
 					int y = dado.tira();
-					Tessera puntoColpito = g.getAstronave().getTessera(0, y);
+					Tessera puntoColpito = g.getAstronave().getTesseraDaRigaColonna(0, y);
 					TipoConnettore[] connettore = puntoColpito.getConnettori();
 					if (dimensione == 0) {
 						// capire bene come fare contollare se ha lato liscio opppure se ha scudi ma
@@ -56,7 +56,7 @@ public class PioggiaDiMeteoriti extends Carta {
 				}
 				case OVEST: {
 					int y = dado.tira();
-					Tessera puntoColpito = g.getAstronave().getTessera(0, y);
+					Tessera puntoColpito = g.getAstronave().getTesseraDaRigaColonna(0, y);
 					TipoConnettore[] connettore = puntoColpito.getConnettori();
 					if (dimensione == 0) {
 						// capire bene come fare contollare se ha lato liscio opppure se ha scudi ma
@@ -82,7 +82,7 @@ public class PioggiaDiMeteoriti extends Carta {
 					;
 				case NORD: {
 					int y = dado.tira();
-					Tessera puntoColpito = g.getAstronave().getTessera(0, y);
+					Tessera puntoColpito = g.getAstronave().getTesseraDaRigaColonna(0, y);
 					TipoConnettore[] connettore = puntoColpito.getConnettori();
 					if (dimensione == 0) {
 						// capire bene come fare contollare se ha lato liscio opppure se ha scudi ma
@@ -108,7 +108,7 @@ public class PioggiaDiMeteoriti extends Carta {
 					;
 				case SUD: {
 					int y = dado.tira();
-					Tessera puntoColpito = g.getAstronave().getTessera(0, y);
+					Tessera puntoColpito = g.getAstronave().getTesseraDaRigaColonna(0, y);
 					TipoConnettore[] connettore = puntoColpito.getConnettori();
 					if (dimensione == 0) {
 						// capire bene come fare contollare se ha lato liscio opppure se ha scudi ma

@@ -77,6 +77,7 @@ public class Astronave {
 
 
 	
+	//METODO PER INSERIRE UNA TESSERA NELLA ASTRONAVE
 	public boolean piazzaTessera(Tessera t, int riga, int colonna) {
 		if (riga < 0 || riga >= NUMERO_RIGHE || colonna < 0 || colonna >= NUMERO_COLONNE)
 			return false;
@@ -84,10 +85,16 @@ public class Astronave {
 		if (!mascheraValidita[riga][colonna]) return false;
 		if (griglia[riga][colonna] != null) return false;
 
+		if (!connettoriCompatibili(t, riga, colonna)) {
+			System.out.println("Connettori non compatibili con tessere adiacenti.");
+			return false;
+		}
+
 		griglia[riga][colonna] = new Casella(riga, colonna);
 		griglia[riga][colonna].setTessera(t);
 		return true;
     }
+	
 	
 
 	public boolean assegnaAlieno(Magazzino magazzino, ColoreAlieno colore) {
@@ -276,6 +283,43 @@ public class Astronave {
 			}
 		}
 		return sb.toString();
+	}
+	
+	
+	private boolean connettoriCompatibili(Tessera nuova, int riga, int colonna) {
+		// Controlla connettore a NORD
+		if (riga > 0 && griglia[riga - 1][colonna] != null && griglia[riga - 1][colonna].getTessera() != null) {
+			Tessera vicina = griglia[riga - 1][colonna].getTessera();
+			TipoConnettore mio = nuova.getConnettoreSuLato(Direzione.NORD);
+			TipoConnettore suo = vicina.getConnettoreSuLato(Direzione.SUD); // opposto
+			if (!mio.compatibileCon(suo)) return false;
+		}
+
+		// Controlla connettore a SUD
+		if (riga < NUMERO_RIGHE - 1 && griglia[riga + 1][colonna] != null && griglia[riga + 1][colonna].getTessera() != null) {
+			Tessera vicina = griglia[riga + 1][colonna].getTessera();
+			TipoConnettore mio = nuova.getConnettoreSuLato(Direzione.SUD);
+			TipoConnettore suo = vicina.getConnettoreSuLato(Direzione.NORD); // opposto
+			if (!mio.compatibileCon(suo)) return false;
+		}
+
+		// Controlla connettore a EST
+		if (colonna < NUMERO_COLONNE - 1 && griglia[riga][colonna + 1] != null && griglia[riga][colonna + 1].getTessera() != null) {
+			Tessera vicina = griglia[riga][colonna + 1].getTessera();
+			TipoConnettore mio = nuova.getConnettoreSuLato(Direzione.EST);
+			TipoConnettore suo = vicina.getConnettoreSuLato(Direzione.OVEST); // opposto
+			if (!mio.compatibileCon(suo)) return false;
+		}
+
+		// Controlla connettore a OVEST
+		if (colonna > 0 && griglia[riga][colonna - 1] != null && griglia[riga][colonna - 1].getTessera() != null) {
+			Tessera vicina = griglia[riga][colonna - 1].getTessera();
+			TipoConnettore mio = nuova.getConnettoreSuLato(Direzione.OVEST);
+			TipoConnettore suo = vicina.getConnettoreSuLato(Direzione.EST); // opposto
+			if (!mio.compatibileCon(suo)) return false;
+		}
+
+		return true;
 	}
 	
 	

@@ -32,14 +32,14 @@ public class Gioco {
         giocatori.add(new Giocatore(Colore.VERDE));
         giocatori.add(new Giocatore(Colore.GIALLO));
 		
-		System.out.println("INIZIO DEL GIOCO!");
+        System.out.println("\n--- INIZIO DEL GIOCO! ---");
 		
 		//I GIOCATORI SCELGONO PRIMA DI INIZIARE IL GIOCO IL RISPETTIVO COLORE
 		//L'ORDINE DI PARTENZA SARA CASUALE
 		Collections.shuffle(giocatori);
 		this.ordineDiRotta = new ArrayList<>(giocatori);
 
-		System.out.println("\n Ordine Iniziale di COSTRUZIONE: ");
+		System.out.println("\nOrdine Iniziale di COSTRUZIONE: ");
 		for (int i = 0; i < ordineDiRotta.size(); i++) {
             System.out.println((i+1) + ". " + ordineDiRotta.get(i).getColore());
         }

@@ -87,12 +87,25 @@ public class Tessera {
     }
     
     public void mostraTessera() {
-        System.out.println("\nTessera Dettagli:");
-        System.out.println("Tipo: " + this.getTipo());
+        System.out.println("=====================");
+        System.out.println("Tipo              : " + this.getTipo());
+
         TipoConnettore[] c = this.getConnettori();
-        System.out.println("Connettori - ALTO: " + c[0] + ", DESTRA: " + c[1] + ", BASSO: " + c[2] + ", SINISTRA: " + c[3]);
-        if (this.getCapacitaBatteria() > 0) System.out.println("Capacità Batteria: " + this.getCapacitaBatteria());
-        if (this.getCapacitaStiva() > 0) System.out.println("Capacità Stiva: " + this.getCapacitaStiva());
-        if (this.getDirezione() != null) System.out.println("Direzione: " + this.getDirezione());
+        System.out.println("Connettori        :");
+        System.out.println("    ALTO          -> " + c[0]);
+        System.out.println("    DESTRA        -> " + c[1]);
+        System.out.println("    BASSO         -> " + c[2]);
+        System.out.println("    SINISTRA      -> " + c[3]);
+
+        if (this.getCapacitaBatteria() > 0)
+            System.out.println("Capacità Batteria : " + this.getCapacitaBatteria());
+
+        if (this.getCapacitaStiva() > 0)
+            System.out.println("Capacità Stiva    : " + this.getCapacitaStiva());
+
+        if (this.getDirezione() != null && !this.getDirezione().isEmpty())
+            System.out.println("Direzione         : " + this.getDirezione());
+
+        System.out.println("=====================");
     }
 }

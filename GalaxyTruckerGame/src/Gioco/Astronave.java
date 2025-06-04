@@ -73,6 +73,28 @@ public class Astronave {
 				griglia[i][j] = null;
 			}
 		}
+
+		int rigaCabina = -1;
+		int colonnaCabina = -1;
+		if (livello == 1) {
+			rigaCabina = 2;
+			colonnaCabina = 2;
+		} else if (livello == 2) {
+			rigaCabina = 2;
+			colonnaCabina = 3;
+		} else if (livello == 3) {
+			rigaCabina = 3;
+			colonnaCabina = 4;
+		}
+
+		Tessera cabina = new Tessera(TipoConnettore.UNIVERSALE, TipoConnettore.UNIVERSALE,
+						TipoConnettore.UNIVERSALE, TipoConnettore.UNIVERSALE, TipoTessera.CABINA,
+						0, 0,
+						null);
+		
+		griglia[rigaCabina][colonnaCabina] = new Casella(rigaCabina, colonnaCabina);
+		griglia[rigaCabina][colonnaCabina].setTessera(cabina);
+						
 	}
 	
 	//METODO PER INSERIRE UNA TESSERA NELLA ASTRONAVE

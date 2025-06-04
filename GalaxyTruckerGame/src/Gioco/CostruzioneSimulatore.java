@@ -58,19 +58,29 @@ public class CostruzioneSimulatore {
                     System.out.println("----------------------------------");
                     continue; // passa al prossimo giocatore
                 }
-                
-                System.out.println("Ora decidi dove vuoi posizionare la tessera");
-                System.out.println("Inserisci riga (0-4):");
-                int riga = Integer.parseInt(scanner.nextLine());
-                System.out.println("Inserisci colonna (0-4):");
-                int colonna = Integer.parseInt(scanner.nextLine());
 
-                boolean piazzata = g.getAstronave().piazzaTessera(tessera, riga, colonna);      //creare metodo piazzaTessera
-                if (piazzata) {
-                    System.out.println("Tessera piazzata con successo.");
-                } else {
-                    System.out.println("Errore nel piazzamento. Tessera non piazzata.");
-                    tutteLeTessere.restituisciTessera(tessera);
+                boolean piazzata = false;
+                while(!piazzata){
+                    System.out.println("Ora decidi dove vuoi posizionare la tessera");
+                    System.out.println("Inserisci riga (0 - "+(g.getAstronave().getNumeroRighe() - 1) + "):");
+                    int riga = Integer.parseInt(scanner.nextLine());
+                    System.out.println("Inserisci colonna (0 - "+(g.getAstronave().getNumeroColonne() - 1) + "):");
+                    int colonna = Integer.parseInt(scanner.nextLine());
+                    
+                    piazzata = g.getAstronave().piazzaTessera(tessera, riga, colonna);
+                    if(!piazzata){
+                        System.out.println("ERRORE! La tessera NON e' stata posizionata");
+                        System.out.println("Vuoi riprovare a posizionarla? (s/n)");
+                        String scelta = scanner.nextLine().toLowerCase();
+                        if(scelta.equals("n")){
+                            tutteLeTessere.restituisciTessera(tessera);
+                            System.out.println("Hai scartato la tessera! TURNO TERMINATO");
+                            break;
+                        }
+                    }else{
+                        System.out.println("Tessera piazzata con successo!");
+                    }
+                
                 }
 
             }

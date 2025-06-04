@@ -371,5 +371,38 @@ public class Astronave {
 		return true;
 	}
 	
+	// controlla se almeno una casella adiacente contiene una tessera
+	private boolean adiacenteATesseraEsistente(int riga, int colonna) {
+		// NORD 
+		if (riga > 0 && griglia[riga - 1][colonna] != null && griglia[riga - 1][colonna].getTessera() != null) {
+			return true;
+		}
+
+		// SUD
+		if (riga < NUMERO_RIGHE - 1 && griglia[riga + 1][colonna] != null && griglia[riga + 1][colonna].getTessera() != null) {
+			return true;
+		}
+
+		// EST
+		if (colonna < NUMERO_COLONNE - 1 && griglia[riga][colonna + 1] != null && griglia[riga][colonna + 1].getTessera() != null) {
+			return true;
+		}
+
+		// OVEST
+		if (colonna > 0 && griglia[riga][colonna - 1] != null && griglia[riga][colonna - 1].getTessera() != null) {
+			return true;
+		}
+
+		// Nessuna tessera adiacente
+		return false;
+	}
+	
+	public int getNumeroRighe() {
+		return NUMERO_RIGHE;
+	}
+
+	public int getNumeroColonne() {
+		return NUMERO_COLONNE;
+	}
 	
 }

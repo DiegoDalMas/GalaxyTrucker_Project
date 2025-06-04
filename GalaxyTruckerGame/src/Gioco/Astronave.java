@@ -105,6 +105,11 @@ public class Astronave {
 		if (!mascheraValidita[riga][colonna]) return false;
 		if (griglia[riga][colonna] != null) return false;
 
+		if(!adiacenteATesseraEsistente(riga, colonna)){
+			System.out.println("La tessera deve essere adiacente a un'altra tessera!");
+			return false;
+		}
+
 		if (!connettoriCompatibili(t, riga, colonna)) {
 			System.out.println("Connettori non compatibili con tessere adiacenti.");
 			return false;

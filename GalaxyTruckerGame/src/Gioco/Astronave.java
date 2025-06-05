@@ -198,9 +198,37 @@ public class Astronave {
 		}
 	}
 	
-	//DA FARE
-	public void perditaMerce(int qta) {
-		
+	public void perditaMerce(int quantita) {
+		int merciRimosse = 0;
+		Colore[] prioritaColori = {Colore.ROSSO, Colore.GIALLO, Colore.VERDE, Colore.BLU};
+		for(Colore colore: prioritaColori){
+			if(merciRimosse >= quantita){
+				break;
+			}
+			for(int i=0; i<griglia.length && merciRimosse < quantita; i++){
+				for(int j=0; j<griglia[i].length && merciRimosse < quantita; j++){
+					Casella casella = griglia[i][j];
+					if(casella == null || casella.getTessera() != null){
+						continue;
+					}
+
+					Tessera t = casella.getTessera();
+					if(t.getTipo() != TipoTessera.STIVA && t.getTipo() != TipoTessera.STIVA_SPECIALE){
+						continue;
+					}
+
+					List<Merci> merci = t.getMerciContenute();
+					for(int k=0; k<merci.size() && merciRimosse < quantita; k++){
+						if(merci.get(k).getColore() == colore){
+							System.out.println("Hai perso una merce di COLORE "+colore+" in riga "+i+" e colonna "+j);
+							merci.remove(k);
+							merciRimosse++;
+							k--;
+						}
+					}
+				}
+			}
+		}
 	}
 	
 	public Tessera getTesseraDaRigaColonna(int riga, int colonna) {

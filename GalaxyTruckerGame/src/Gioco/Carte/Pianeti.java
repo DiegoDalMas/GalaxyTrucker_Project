@@ -1,64 +1,88 @@
 package Gioco.Carte;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
-import Gioco.Colore;
 import Gioco.Giocatore;
+import Gioco.PlanciaVolo;
 
 public class Pianeti extends Carta {
-	private int giorniPersi;
-	private boolean conferma = false;
-	private int  cont=0;
-	private Scanner in = new Scanner(System.in);
-	private List<Pianeta> pianeti;
 
-	public Pianeti(int numPianeti, Colore colore, int numMerci) {
-		for (int i = 0; i < numPianeti; i++) {
-			Pianeta p = new Pianeta(colore, numMerci);
-			pianeti.add(p);
+	private List<Pianeta> pianeti;
+	private int giorniDiVoloPersi;
+
+	public Pianeti(){
+		this.pianeti = new ArrayList<>();
+		Random rand = new Random();
+		this.giorniDiVoloPersi = rand.nextInt(3) + 1;	//DA 1 A 3
+		int numero_pianeti = rand.nextInt(3) + 2;	//DA 2 A 4
+		for(int i=0; i<numero_pianeti; i++){
+			pianeti.add(new Pianeta());
 		}
 	}
+
+	public int getGiorniDiVoloPersi() {
+        return giorniDiVoloPersi;
+    }
 
 	@Override
-	public void applicaEffetto(List<Giocatore> giocatori, Giocatore leader) {
+	public void applicaEffetto(List<Giocatore> giocatori, Giocatore leader, PlanciaVolo plancia) {
+		Scanner sc = new Scanner(System.in);
 		System.out.println("CARTA PIANETI");
-		do {
-			boolean controllo = controlloPianeti();
-			if (controllo == true || cont>=4) {
-				for (Giocatore g : giocatori) {
-					System.out.println("giocatore: " + g.getColore() + " vuoi fermarti? y/n");
-					String scelta = in.nextLine();
-					if (scelta.equals("y")) {
-						System.out.println("su quale pianeta vuoi fermarti?");// o facciamo inserire il numero oppure il colore però poi è da verificare nella lista
-						int sceltapianeta = in.nextInt();
-						boolean cond = true;
-						while (cond == true) {
-							if (pianeti.get(sceltapianeta).isOccupato() == false) {
-								pianeti.get(sceltapianeta).setOccupato(true);
-								pianeti.get(sceltapianeta).AssegnaMerci(g);
-								
-								g.aggiornaPosizioni(giorniPersi);
-								cond = false;
-							}
-						}
-					}
-                  cont++;
-				}
-			}else {
-				System.out.println("I PIANETI SONO TUTTI OCCUPATI");
-				conferma=false;
-			}
-		} while (conferma == false);
-	}
+		System.out.println("Giorni di Volo che PERDERAI quando atterri: " + giorniDiVoloPersi);
+		
+		//STAMPA I PIANETI A SCHERMO
+		stampaPianeti();
+		
+		for(Giocatore g: giocatori){
+			System.out.println("\nGiocatore " + g.getColore() + ", vuoi atterrare su un pianeta? (s/n)");
+			String risposta = sc.nextLine().toLowerCase();
+			if(risposta.equals("s")){
+				boolean pianetaAssegnato = false;
 
-	private boolean controlloPianeti() {
-		boolean controllo = true;
-		for (int i = 0; i < pianeti.size(); i++) {
-			if (pianeti.get(i).isOccupato() == true) {
-				controllo = false;
+				while (!pianetaAssegnato) {
+					System.out.println("Scegli il numero del pianeta su cui vuoi atterrare:");
+					int sceltaPianeta;
+					try{
+						sceltaPianeta = Integer.parseInt(sc.nextLine());
+					}catch(NumberFormatException e){
+						System.out.println("Inserisci un numero valido");
+						continue;
+					}
+
+					if (sceltaPianeta < 1 || sceltaPianeta > pianeti.size()) {
+						System.out.println("Numero fuori range.");
+						continue;
+					}
+					Pianeta pianetaScelto = pianeti.get(sceltaPianeta-1);
+
+					if (pianetaScelto.isOccupato()) {
+						System.out.println("Quel pianeta è già occupato!");
+					} else {
+						pianetaScelto.setOccupato(true);
+						pianetaScelto.raccogliMerci(g);
+						System.out.println("Merci caricate con successo.");
+						plancia.muoviGiocatore(g.getColore(), -giorniDiVoloPersi);
+						System.out.println("Hai perso " + giorniDiVoloPersi + " giorni di volo.");
+						pianetaAssegnato = true;
+					}
+				}
+			}else{
+				System.out.println("Hai scelto di NON atterrare. Tocca al prossimo giocatore!");
 			}
 		}
-		return controllo;
+	}
+
+	public void stampaPianeti(){
+		System.out.println("\nPianeti disponibili su questa carta:");
+		for(int i=0; i<pianeti.size(); i++){
+			Pianeta p = pianeti.get(i);
+			if(!p.isOccupato()){
+				System.out.println("Pianeta "+i+1);
+				p.stampaPianeta();
+			}
+		}
 	}
 }

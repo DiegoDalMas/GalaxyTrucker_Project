@@ -169,9 +169,33 @@ public class Astronave {
 		
 	}
 	
-	//DA FARE
-	public void assegnaMerce(Merci colore) {
-		
+	public void assegnaMerce(List<Merci> ricompensa) {
+		int merciInserite=0;
+		for(Merci m: ricompensa){
+			boolean aggiunta = false;
+
+			//cerco una stiva disponibile
+			for(int i=0; (i<griglia.length && !aggiunta); i++){
+				for(int j=0; (j<griglia[i].length && !aggiunta); j++){
+					Casella c = griglia[i][j];
+					if(c != null && c.getTessera() != null){
+						Tessera t = c.getTessera();
+						TipoTessera tipo = t.getTipo();
+
+						if(tipo == TipoTessera.STIVA || tipo == TipoTessera.STIVA_SPECIALE){
+							if(t.aggiungiMerce(m)){
+								System.out.println("Merce "+m.getColore()+" caricata in riga "+i+" e colonna "+j);
+								aggiunta = true;
+								merciInserite++;
+							}
+						}
+					}
+				}
+			}
+			if (!aggiunta) {
+				System.out.println("Nessuna stiva disponibile per la merce " + m.getColore());
+			}
+		}
 	}
 	
 	//DA FARE

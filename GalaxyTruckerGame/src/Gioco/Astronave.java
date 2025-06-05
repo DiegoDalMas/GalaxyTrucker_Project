@@ -31,7 +31,7 @@ public class Astronave {
     };
 
 	private List<Alieno> alieni;
-	private List<Batteria> batterie;
+	private int batterieTotali;
 	private List<Umano> umani;
 	private Casella[][] griglia;
 	private boolean[][] mascheraValidita;
@@ -65,7 +65,7 @@ public class Astronave {
 				throw new IllegalArgumentException("livello non valido: ");
 		}
 		this.alieni = new ArrayList<>();
-		this.batterie = new ArrayList<>();
+		this.batterieTotali = 0;
 		this.umani = new ArrayList<>();
 		this.griglia = new Casella[NUMERO_RIGHE][NUMERO_COLONNE];
 		for (int i = 0; i < NUMERO_RIGHE; i++) {
@@ -133,15 +133,15 @@ public class Astronave {
 		return true;
 	}
 
-	public boolean assegnaBatteria(Magazzino magazzino) {
-		Batteria b = magazzino.prendiBatteria();
-		if (b != null) {
-			batterie.add(b);
-			System.out.println("hai preso una batteria");
+	public boolean assegnaBatteria(Magazzino magazzino){
+		if(magazzino.prendiBatteria()){
+			batterieTotali++;
+			System.out.println("Hai preso una Batteria!");
 			return true;
+		}else{
+			System.out.println("Son finite le batterie!");
+			return false;
 		}
-		System.out.println("Nessuna batteria disponibile.");
-		return false;
 	}
 
 	public boolean assegnaUmano(Magazzino magazzino) {

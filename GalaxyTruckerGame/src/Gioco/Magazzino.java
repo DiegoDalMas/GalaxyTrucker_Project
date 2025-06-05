@@ -24,7 +24,7 @@ public class Magazzino {
 	private static final int MAX_UMANI = 42;
 	private List<Merci> merci;
 	private List<Alieno> alieni;
-	private List<Batteria> batterie;
+	private int batterieDisponibili;
 	private List<Umano> umani;
 	
 	public Magazzino() {
@@ -36,8 +36,7 @@ public class Magazzino {
         alieni = new ArrayList<>(MAX_ALIENI);
         aggiungiAlieniMagazzino(ColoreAlieno.VIOLA, 4);
         aggiungiAlieniMagazzino(ColoreAlieno.MARRONE, 4);
-        batterie = new ArrayList<>(MAX_BATTERIE);
-        aggiungiBatterieMagazzino(MAX_BATTERIE);
+        batterieDisponibili = MAX_BATTERIE;
         umani = new ArrayList<>(MAX_UMANI);
         aggiungiUmaniMagazzino(MAX_UMANI);
     }
@@ -54,11 +53,7 @@ public class Magazzino {
         }
     }
     
-    private void aggiungiBatterieMagazzino(int quantita) {
-    	for(int i=0; i<quantita; i++) {
-    		batterie.add(new Batteria());
-    	}
-    }
+    
     
     private void aggiungiUmaniMagazzino(int quantita) {
         for (int i = 0; i < quantita; i++) {
@@ -76,11 +71,12 @@ public class Magazzino {
         return null;
     }
     
-    public Batteria prendiBatteria() {
-        if (!batterie.isEmpty()) {
-        	return batterie.remove(0);
+    public boolean prendiBatteria() {
+        if(batterieDisponibili > 0){
+            batterieDisponibili--;
+            return true;
         }
-        return null;
+        return false;
     }
     
     public Umano prendiUmano() {

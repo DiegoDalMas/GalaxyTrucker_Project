@@ -32,7 +32,7 @@ public class Astronave {
 
 	private List<Alieno> alieni;
 	private int batterieTotali;
-	private List<Umano> umani;
+	private int umaniTotali;
 	private Casella[][] griglia;
 	private boolean[][] mascheraValidita;
 	private int livello;
@@ -66,7 +66,7 @@ public class Astronave {
 		}
 		this.alieni = new ArrayList<>();
 		this.batterieTotali = 0;
-		this.umani = new ArrayList<>();
+		this.umaniTotali = 0;
 		this.griglia = new Casella[NUMERO_RIGHE][NUMERO_COLONNE];
 		for (int i = 0; i < NUMERO_RIGHE; i++) {
 			for (int j = 0; j < NUMERO_COLONNE; j++) {
@@ -143,27 +143,28 @@ public class Astronave {
 			return false;
 		}
 	}
-
+	
 	public boolean assegnaUmano(Magazzino magazzino) {
-		Umano u = magazzino.prendiUmano();
-		if (u != null) {
-			umani.add(u);
-			System.out.println("hai preso un umano");
+		if(magazzino.prendiUmano()) {
+			umaniTotali++;
+			System.out.println("Hai preso un Umano");
 			return true;
+		}else {
+			System.out.println("Son finiti gli umani!");
+			return false;
 		}
-		System.out.println("Nessun umano disponibile.");
-		return false;
 	}
-
 	
 	//CONTROLLARE
 	public void perditaEquipaggio(int numero) {
-		for (int i = 0; i < numero; i++) {
-			umani.remove(i);
-			// si possno perdere anche alieni facciamo decidere al giocatore? o facciamo che
-			// si perodno solo umani?
+		if(umaniTotali >= numero) {
+			umaniTotali -= numero;
+		}else {
+			umaniTotali = 0;
 		}
+		System.out.println("Hai perso "+numero+" umani. Ti rimangono "+umaniTotali+" umani!");
 	}
+	
 	//DA FARE
 	public void subisciDanno() {
 		
@@ -190,7 +191,7 @@ public class Astronave {
     }
 
 	public int getEquipaggio() {
-		int equipaggio = alieni.size() + umani.size();
+		int equipaggio = alieni.size() + umaniTotali;
 		return equipaggio;
 	}
 

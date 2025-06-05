@@ -25,7 +25,7 @@ public class Magazzino {
 	private List<Merci> merci;
 	private List<Alieno> alieni;
 	private int batterieDisponibili;
-	private List<Umano> umani;
+	private int umaniDisponibili;
 	
 	public Magazzino() {
         merci = new ArrayList<>(MAX_MERCI);
@@ -37,8 +37,7 @@ public class Magazzino {
         aggiungiAlieniMagazzino(ColoreAlieno.VIOLA, 4);
         aggiungiAlieniMagazzino(ColoreAlieno.MARRONE, 4);
         batterieDisponibili = MAX_BATTERIE;
-        umani = new ArrayList<>(MAX_UMANI);
-        aggiungiUmaniMagazzino(MAX_UMANI);
+        umaniDisponibili = MAX_UMANI;
     }
 
     private void aggiungiMerciMagazzino(Colore colore, int quantita) {
@@ -50,14 +49,6 @@ public class Magazzino {
     private void aggiungiAlieniMagazzino(ColoreAlieno colore, int quantita) {
         for (int i = 0; i < quantita; i++) {
             alieni.add(new Alieno(colore));
-        }
-    }
-    
-    
-    
-    private void aggiungiUmaniMagazzino(int quantita) {
-        for (int i = 0; i < quantita; i++) {
-            umani.add(new Umano());
         }
     }
     
@@ -79,13 +70,14 @@ public class Magazzino {
         return false;
     }
     
-    public Umano prendiUmano() {
-        if (!umani.isEmpty()) {
-        	return umani.remove(0);
-        }
-        return null;
+    public boolean prendiUmano() {
+    	if(umaniDisponibili > 0) {
+    		umaniDisponibili--;
+    		return true;
+    	}
+    	return false;
     }
-	
+    
 	// PRELEVA E RIMUOVE UNA MERCE DI UN CERTO COLORE
 	public Merci prelevaMerce(Colore colore) {
 	    for (int i = 0; i < merci.size(); i++) {

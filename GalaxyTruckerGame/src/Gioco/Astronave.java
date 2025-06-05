@@ -155,7 +155,6 @@ public class Astronave {
 		}
 	}
 	
-	//CONTROLLARE
 	public void perditaEquipaggio(int numero) {
 		if(umaniTotali >= numero) {
 			umaniTotali -= numero;

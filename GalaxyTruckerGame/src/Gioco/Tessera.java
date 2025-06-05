@@ -1,11 +1,12 @@
 package Gioco;
-import java.util.EnumSet;
+import java.util.*;
 
 public class Tessera {
 	private TipoConnettore[] connettori;	// ALTO, DESTRA, BASSO, SINISTRA
 	private TipoTessera tipo;
     private int capacitaBatteria;       //SOLO SE BATTERIA
     private int capacitaStiva;         //SOLO SE STIVA, STIVA_SPECIALE
+    private List<Merci> merciContenute = new ArrayList<>();
     private EnumSet<Direzione> direzione;
     
     public Tessera(TipoConnettore alto, TipoConnettore destra, TipoConnettore basso, TipoConnettore sinistra,
@@ -31,6 +32,10 @@ public class Tessera {
 
     public int getCapacitaStiva(){
         return capacitaStiva;
+    }
+    
+    public List<Merci> getMerciContenute() {
+        return merciContenute;
     }
 
     public TipoConnettore getConnettoreSuLato(Direzione d) {
@@ -84,6 +89,23 @@ public class Tessera {
             }
             direzione = nuoveDirezioni;
         }
+    }
+    
+    public boolean aggiungiMerce(Merci m){
+        
+    	if (tipo != TipoTessera.STIVA && tipo != TipoTessera.STIVA_SPECIALE) {
+            return false;
+        }
+    	
+    	if(m.getColore() == Colore.ROSSO && tipo != TipoTessera.STIVA_SPECIALE){
+            return false;
+        }
+        
+        if(merciContenute.size() < capacitaStiva){
+            merciContenute.add(m);
+            return true;
+        }
+        return false;
     }
     
     public void mostraTessera() {

@@ -2,6 +2,7 @@ package Gioco;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Astronave {
 	private static final boolean[][] MASCHERA_LIVELLO_1 = {
@@ -247,18 +248,86 @@ public class Astronave {
 	}
 
 	
-	//DA FARE
-	public int getPotenzaDiFuoco() {
-		int potenzaDiFuoco = 0; // andrebbe assegnata il numero dei cannoni singoli + ilo numero dei cannoni doppi che se vengnono usati viene tolta una batteria
-		return potenzaDiFuoco;
+	public double getPotenzaDiFuoco() {
+		double potenza = 0.0;
+		Scanner scanner = new Scanner(System.in);
+		for(int i=0; i<NUMERO_RIGHE; i++){
+			for(int j=0; j<NUMERO_COLONNE; j++){
+				Casella casella = griglia[i][j];
+				if(casella == null || casella.getTessera() == null){
+					continue;
+				}
+				Tessera t = casella.getTessera();
+				TipoTessera tipo = t.getTipo();
+				Direzione direzione = t.getUnicaDirezione();
+
+				if(tipo == TipoTessera.CANNONE_SINGOLO){
+					if(direzione == Direzione.NORD){
+						potenza += 1;
+					}else if(direzione != null){
+						potenza += 0.5;
+					}
+				}else if(tipo == TipoTessera.CANNONE_DOPPIO){
+					System.out.println("Vuoi usare una batteria per attivare il cannone doppio in posizione [RIGA: "+i+" ; COLONNA: "+j+"]? (s/n)");
+					String input = scanner.nextLine().toLowerCase();
+
+					if(input.equals("s") && batterieTotali>0){
+						batterieTotali--;
+
+						if(direzione == Direzione.NORD){
+							potenza += 2;
+						}else if(direzione != null){
+							potenza += 1;
+						}
+
+					}else{
+						System.out.println("Cannone DOPPIO non attivato");
+					}
+				}
+			}
+		}
+		if(potenza > 0){
+			for(Alieno a: alieni){
+				potenza += a.bonusPotenzaFuoco();
+			}
+		}
+		return potenza;
 	}
 
 	
-	//DA FARE
 	public int getPotenzaMotrice() {
-		int potenzaMotrice = 0; // andrebbe assegnata il numero dei motori singoli + il numero dei motori
-								// doppi che se vengnono usati viene tolta una batteria
-		return potenzaMotrice;
+		int potenza = 0;
+		Scanner scanner = new Scanner(System.in);
+
+		for(int i=0; i<NUMERO_RIGHE; i++){
+			for(int j=0; j<NUMERO_COLONNE; j++){
+				Casella casella = griglia[i][j];
+				if(casella == null || casella.getTessera() == null){
+					continue;
+				}
+				Tessera t = casella.getTessera();
+				TipoTessera tipo = t.getTipo();
+				if(tipo == TipoTessera.PROPULSORE_SINGOLO){
+					potenza += 1;
+				}else if(tipo == TipoTessera.PROPULSORE_DOPPIO){
+					System.out.println("Vuoi usare una batteria per attivare il propulsore doppio in posizione [RIGA: "+i+" ; COLONNA: "+j+"]? (s/n)");
+					String input = scanner.nextLine().toLowerCase();
+					if(input.equals("s") && batterieTotali>0){
+						batterieTotali--;
+						potenza += 2;
+					}else{
+						System.out.println("Propulsore DOPPIO non attivato");
+					}
+				}
+			}
+		}
+		if(potenza>0){
+			for(Alieno a:alieni){
+				potenza += a.bonusPotenzaMotore();
+			}
+		}
+		return potenza;
+
 	}
 	
 	public int connettoriEsposti(){

@@ -27,7 +27,7 @@ public class Contrabbandieri extends Carta {
 		
 		do{
 			for(Giocatore g: giocatori){
-				int potenzaFuocoGiocatore = g.getAstronave().getPotenzaDiFuoco();	//DA FARE
+				double potenzaFuocoGiocatore = g.getAstronave().getPotenzaDiFuoco();
 				if(potenzaFuocoContrabbandieri > potenzaFuocoGiocatore){
                 	System.out.println("HAI PERSO! Perdi " + penalita + " merci");
 					g.getAstronave().perditaMerce(penalita);

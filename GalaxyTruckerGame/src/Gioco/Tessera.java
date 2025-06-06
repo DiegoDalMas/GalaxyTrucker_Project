@@ -63,6 +63,16 @@ public class Tessera {
     public EnumSet<Direzione> getDirezione() {
         return direzione;
     }
+    
+    //restituisce la prima direzione
+    public Direzione getUnicaDirezione(){
+        if(direzione != null && !direzione.isEmpty()){
+            for(Direzione d: direzione){
+                return d;
+            }
+        }
+        return null;
+    }
 
     public void setDirezione(EnumSet<Direzione> direzione) {
         this.direzione = direzione;

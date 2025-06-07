@@ -37,8 +37,11 @@ public class Pianeti extends Carta {
 		stampaPianeti();
 		
 		for(Giocatore g: giocatori){
-			System.out.println("\nGiocatore " + g.getColore() + ", vuoi atterrare su un pianeta? (s/n)");
-			String risposta = sc.nextLine().toLowerCase();
+			String risposta;
+			do {
+				System.out.println("\nGiocatore " + g.getColore() + ", vuoi atterrare su un pianeta? (s/n)");
+				risposta = sc.nextLine().toLowerCase();
+			}while(!risposta.equals("s") && !risposta.equals("n"));
 			if(risposta.equals("s")){
 				boolean pianetaAssegnato = false;
 

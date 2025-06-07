@@ -1,29 +1,21 @@
 package Gioco.Carte;
 
 import java.util.List;
-import java.util.Scanner;
-
 import Gioco.Giocatore;
+import Gioco.PlanciaVolo;
 
 public class SpazioAperto extends Carta{
-	private boolean cond;
-	private Scanner in = new Scanner(System.in);
-	private int GiorniGuad;
-    public SpazioAperto(){
-        
-    }
-
-    @Override
-    public void applicaEffetto(List<Giocatore> giocatori, Giocatore leader){
-    	System.out.println("CARTA SPAZIO APERTO");
-    	for(Giocatore g : giocatori) {
-        	System.out.println("Vuoi avanzare? ");
-        	cond=in.nextBoolean();
-        	if(cond==true) {
-        		GiorniGuad= g.getAstronave().getPotenzaMotrice();
-        	  g.muoviGiocatore(GiorniGuad);
-        	}
-        }
-    }
-    
+	
+	//COSTYTTORE DI DEFAULT
+	
+	@Override
+	public void applicaEffetto(List<Giocatore> giocatori, Giocatore leader, PlanciaVolo plancia){
+		System.out.println("CARTA SPAZIO APERTO");
+		for(Giocatore g: giocatori){
+			System.out.println("Giocatore: " + g.getColore());
+			int potenzaMotrice = g.getAstronave().getPotenzaMotrice();
+			System.out.println("LA tua potenza motrice corrisponde a: " + potenzaMotrice);
+			plancia.muoviGiocatore(g.getColore(), potenzaMotrice);
+		}
+	}
 }

@@ -1,139 +1,137 @@
 package Gioco.Carte;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
-import Gioco.Dado;
+import Gioco.Astronave;
 import Gioco.Direzione;
 import Gioco.Giocatore;
+import Gioco.PlanciaVolo;
 import Gioco.Tessera;
-import Gioco.TipoConnettore;
-import Gioco.TipoTessera;
 
 public class PioggiaDiMeteoriti extends Carta {
-	private Dado dado;
-	private int numMeteoriti;
-	private Meteorite[] meteoriti;
+	
+	private List<Meteorite> meteoriti;
+	private Random rand = new Random();
 
-	public PioggiaDiMeteoriti(int numMeteoriti, Direzione direzione, int grandezza) {
-		this.numMeteoriti = numMeteoriti;
-		for (int i = 0; i < numMeteoriti; i++) {
-			meteoriti[i] = new Meteorite(direzione, grandezza);
+	public PioggiaDiMeteoriti(){
+		this.meteoriti = new ArrayList<>();
+
+		//GENERA 1-2 METEORITI GRANDI
+		int meteoriti_grandi = rand.nextInt(2) + 1;
+		for(int i=0; i<meteoriti_grandi; i++){
+			Direzione dir = Direzione.random();
+			meteoriti.add(new Meteorite(TipoMeteorite.GRANDE, dir));
 		}
+
+		//GENERA 2-3 METEORITI PICCOLI
+		int meteoriti_piccoli = rand.nextInt(2) + 2;
+		for(int i=0; i<meteoriti_piccoli; i++){
+			Direzione dir = Direzione.random();
+			meteoriti.add(new Meteorite(TipoMeteorite.PICCOLO, dir));
+		}
+
+		//LI MISCHIA
+		Collections.shuffle(meteoriti);
 	}
-
+	
 	@Override
-	public void applicaEffetto(List<Giocatore> giocatori, Giocatore leader) {
-		System.out.println("CARTA PIOGGIA DI METEORITI");
-		for (int j = 0; j < numMeteoriti; j++) {
-			Direzione direzione = meteoriti[j].getDirezione();
-			int dimensione = meteoriti[j].getGrandezza();
-			for (Giocatore g : giocatori) {
-				switch (direzione) {
-				case EST: {
-					int y = dado.tira();
-					Tessera puntoColpito = g.getAstronave().getTesseraDaRigaColonna(0, y);
-					TipoConnettore[] connettore = puntoColpito.getConnettori();
-					if (dimensione == 0) {
-						// capire bene come fare contollare se ha lato liscio opppure se ha scudi ma
-						if (connettore[3] != TipoConnettore.LISCIO) {
-							System.out.println("COLPITO");
-							// NON CONTROLLA GLI SCUDI
-							g.getAstronave().subisciDanno();
-						} else {
-							System.out.println("SEI SALVO");
-						}
+	public void applicaEffetto(List<Giocatore> giocatori, Giocatore leader, PlanciaVolo plancia){
+		System.out.println("CARTA: PIOGGIA DI METEORITI");
+        System.out.println("Totale meteoriti: " + meteoriti.size());
 
-					} else {
-						if (puntoColpito.getTipo() == TipoTessera.CANNONE_SINGOLO
-								|| puntoColpito.getTipo() == TipoTessera.CANNONE_DOPPIO) {
-							System.out.println("SEI SALVO");
-						} else {
-							System.out.println("COLPITO");
-							g.getAstronave().subisciDanno();
-						}
-						// capire bene come fare se ha i cannoni può farli esplodere
-					}
-				}
-				case OVEST: {
-					int y = dado.tira();
-					Tessera puntoColpito = g.getAstronave().getTesseraDaRigaColonna(0, y);
-					TipoConnettore[] connettore = puntoColpito.getConnettori();
-					if (dimensione == 0) {
-						// capire bene come fare contollare se ha lato liscio opppure se ha scudi ma
-						if (connettore[1] != TipoConnettore.LISCIO) {
-							System.out.println("COLPITO");
-							// NON CONTROLLA GLI SCUDI
-							g.getAstronave().subisciDanno();
-						} else {
-							System.out.println("SEI SALVO");
-						}
+		for(Meteorite m: meteoriti){
+			Direzione dir = m.getDirezione();
+			int dado1 = rand.nextInt(6) + 1;
+			int dado2 = rand.nextInt(6) + 1;
+			int risultato = dado1 + dado2;
 
-					} else {
-						if (puntoColpito.getTipo() == TipoTessera.CANNONE_SINGOLO
-								|| puntoColpito.getTipo() == TipoTessera.CANNONE_DOPPIO) {
-							System.out.println("SEI SALVO");
-						} else {
-							System.out.println("COLPITO");
-							g.getAstronave().subisciDanno();
-						}
-						// capire bene come fare se ha i cannoni può farli esplodere
-					}
-				}
-					;
-				case NORD: {
-					int y = dado.tira();
-					Tessera puntoColpito = g.getAstronave().getTesseraDaRigaColonna(0, y);
-					TipoConnettore[] connettore = puntoColpito.getConnettori();
-					if (dimensione == 0) {
-						// capire bene come fare contollare se ha lato liscio opppure se ha scudi ma
-						if (connettore[0] != TipoConnettore.LISCIO) {
-							System.out.println("COLPITO");
-							// NON CONTROLLA GLI SCUDI
-							g.getAstronave().subisciDanno();
-						} else {
-							System.out.println("SEI SALVO");
-						}
+			System.out.println("Meteorite " + m.getTipo() + " da " + dir + " colpirà in " + risultato);
 
-					} else {
-						if (puntoColpito.getTipo() == TipoTessera.CANNONE_SINGOLO
-								|| puntoColpito.getTipo() == TipoTessera.CANNONE_DOPPIO) {
-							System.out.println("SEI SALVO");
-						} else {
-							System.out.println("COLPITO");
-							g.getAstronave().subisciDanno();
-						}
-						// capire bene come fare se ha i cannoni può farli esplodere
-					}
-				}
-					;
-				case SUD: {
-					int y = dado.tira();
-					Tessera puntoColpito = g.getAstronave().getTesseraDaRigaColonna(0, y);
-					TipoConnettore[] connettore = puntoColpito.getConnettori();
-					if (dimensione == 0) {
-						// capire bene come fare contollare se ha lato liscio opppure se ha scudi ma
-						if (connettore[2] != TipoConnettore.LISCIO) {
-							System.out.println("COLPITO");
-							// NON CONTROLLA GLI SCUDI
-							g.getAstronave().subisciDanno();
-						} else {
-							System.out.println("SEI SALVO");
-						}
+			for(Giocatore g: giocatori){
+				Astronave nave = g.getAstronave();
+				Tessera colpita = trovaTesseraColpita(nave, dir, risultato);
 
-					} else {
-						if (puntoColpito.getTipo() == TipoTessera.CANNONE_SINGOLO
-								|| puntoColpito.getTipo() == TipoTessera.CANNONE_DOPPIO) {
-							System.out.println("SEI SALVO");
-						} else {
-							System.out.println("COLPITO");
-							g.getAstronave().subisciDanno();
-						}
-						// capire bene come fare se ha i cannoni può farli esplodere
-					}
+				if(colpita == null){
+                    System.out.println("Giocatore " + g.getColore() + " NON sei stato colpito");
+					continue;
 				}
-					;
+
+				if(m.getTipo() == TipoMeteorite.PICCOLO){
+					gestisciPiccoloMeteorite(nave, g, colpita, dir);		//non serve il risultato dei dadi qua??
+				}else{
+					gestisciGrandeMeteorite(nave, g, colpita, dir, risultato);
 				}
 			}
 		}
 	}
+
+	private Tessera trovaTesseraColpita(Astronave nave, Direzione dir, int risultato){
+		switch(dir){
+			case NORD:
+				for(int i=0; i<nave.getNumeroRighe(); i++){
+					Tessera t = nave.getTesseraDaRigaColonna(i, risultato);
+					if(t != null){
+						return t;
+					}
+				}
+				break;
+			
+			case SUD:
+				for(int i=nave.getNumeroRighe()-1; i>=0; i--){
+					Tessera t = nave.getTesseraDaRigaColonna(i, risultato);
+					if(t != null){
+						return t;
+					}
+				}
+				break;
+			
+			case EST:
+				for(int j=nave.getNumeroColonne()-1; j>=0; j--){
+					Tessera t = nave.getTesseraDaRigaColonna(risultato, j);
+					if(t != null){
+						return t;
+					}
+				}
+				break;
+			
+			case OVEST:
+				for(int j=0; j<nave.getNumeroColonne(); j++){
+					Tessera t = nave.getTesseraDaRigaColonna(risultato, j);
+					if(t != null){
+						return t;
+					}
+				}
+				break;
+		}
+		return null;
+	}
+
+	private void gestisciPiccoloMeteorite(Astronave nave, Giocatore g, Tessera t, Direzione dir){
+		if(!nave.connettoreEsposto(t, dir)){
+			System.out.println("Giocatore " + g.getColore() + " meteorite rimbalza. NESUN DANNO");
+			return;
+		}
+
+		if(nave.puoUsareScudo(dir)){
+			nave.usaBatteria();
+			System.out.println("Giocatore " + g.getColore() + " ha attivato lo SCUDO. NESSUN DANNO");
+		}else{
+			nave.subisciDanno(t);
+            System.out.println("Giocatore " + g.getColore() + "e' stato colpito. La tessera viene distrutta");
+		}
+	}
+
+	private void gestisciGrandeMeteorite(Astronave nave, Giocatore g, Tessera t, Direzione dir, int indice){
+		if(nave.puoSparareMeteorite(dir, indice)){
+			nave.usaBatteria();
+            System.out.println("Giocatore " + g.getColore() + " il cannone ha distrutto il meteorite");
+		}else{
+            nave.subisciDanno(t);
+            System.out.println("Giocatore " + g.getColore() + " e' stato colpito da grosso meteorite. La tessera viene distrutta");
+		}
+	}
+	
 }

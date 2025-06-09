@@ -165,9 +165,18 @@ public class Astronave {
 		System.out.println("Hai perso "+numero+" umani. Ti rimangono "+umaniTotali+" umani!");
 	}
 	
-	//DA FARE
-	public void subisciDanno() {
-		
+	public void subisciDanno(Tessera t) {
+		// Trova la posizione della tessera
+		for (int i = 0; i < griglia.length; i++) {
+			for (int j = 0; j < griglia[i].length; j++) {
+				Casella c = griglia[i][j];
+				if (c != null && c.getTessera() == t) {
+					System.out.println("Rimuovo tessera in posizione: [RIGA" + i + ", COLONNA " + j + "]");
+					c = null;
+					return;
+				}
+			}
+		}
 	}
 	
 	public void assegnaMerce(List<Merci> ricompensa) {
@@ -526,4 +535,21 @@ public class Astronave {
 		return NUMERO_COLONNE;
 	}
 	
+	public void usaBatteria() {
+		if (batterieTotali > 0) {
+			batterieTotali--;
+			System.out.println("Hai usato una batteria. Batterie rimaste: " + batterieTotali);
+		} else {
+			System.out.println("Non hai batterie disponibili.");
+		}
+	}
+	
+	public boolean connettoreEsposto(Tessera t, Direzione dir){
+		TipoConnettore connettore = t.getConnettoreSuLato(dir);
+		if(connettore != TipoConnettore.LISCIO){
+			return true;
+		}else{
+			return false;
+		}
+	}
 }

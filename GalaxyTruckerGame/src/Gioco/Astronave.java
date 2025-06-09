@@ -552,4 +552,69 @@ public class Astronave {
 			return false;
 		}
 	}
+	
+	public boolean puoUsareScudo(Direzione dir){
+		for(int i=0; i< griglia.length; i++){
+			for(int j=0; j<griglia[i].length; j++){
+				Casella casella = griglia[i][j];
+				if(casella != null && casella.getTessera() != null){
+					Tessera t = casella.getTessera();
+					if(t.getTipo() == TipoTessera.SCUDO && t.getDirezione().contains(dir)){
+						if(batterieTotali > 0){
+							String scelta;
+							do{
+								Scanner sc = new Scanner(System.in);
+								System.out.println("Hai uno scudo verso " + dir + " Vuoi usarlo? (costo una batteria) (s/n)");
+								scelta = sc.nextLine().toLowerCase();
+							}while(!scelta.equals("s") && !scelta.equals("n"));
+							if(scelta.equals("s")){
+								usaBatteria();
+								System.out.println("Hai usato uno scudo per bloccare il meteorite");
+								return true;
+							}else{
+								System.out.println("HAi scelto di NON usare lo scudo");
+							}
+						}
+					}
+				}
+			}
+		}
+		return false;
+	}
+	
+	public boolean puoSparareMeteorite(Direzione dir, int risultato){
+		Scanner sc = new Scanner(System.in);
+		if(dir == Direzione.NORD){
+			for(int i=0; i<griglia.length; i++){
+				Casella casella = griglia[i][risultato];
+				if(casella != null && casella.getTessera() != null){
+					Tessera t = casella.getTessera();
+					TipoTessera tipo = t.getTipo();
+
+					if((tipo == TipoTessera.CANNONE_SINGOLO || tipo == TipoTessera.CANNONE_DOPPIO) && t.getDirezione().contains(Direzione.NORD)){
+						if(tipo == TipoTessera.CANNONE_DOPPIO && batterieTotali > 0){
+							String scelta;
+							do{
+								System.out.println("Hai un CANNONE DOPPIO rivolto a NORD. Vuoi usarlo per sparare al meteorite? (s/n)");
+								scelta = sc.nextLine().toLowerCase();
+							}while(!scelta.equals("s") && !scelta.equals("n"));
+
+							if(scelta.equals("s")){
+								batterieTotali--;
+								System.out.println("Hai usato 1 batteria per sparare al meteorite");
+								return true;
+							}else{
+								System.out.println("Non hai sparato al meteorite.");
+							}
+						}else if(tipo == TipoTessera.CANNONE_SINGOLO){
+							return true;
+						}
+					}
+				}
+			}
+		}
+		return false;
+	}
+	
+	
 }

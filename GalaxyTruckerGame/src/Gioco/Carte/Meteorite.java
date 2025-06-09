@@ -3,20 +3,20 @@ package Gioco.Carte;
 import Gioco.Direzione;
 
 public class Meteorite {
+	private TipoMeteorite tipo;
 	private Direzione direzione;
-	private int grandezza;
 
-	public Meteorite(Direzione direzione, int grandezza) {
+	public Meteorite(TipoMeteorite tipo, Direzione direzione) {
 		this.direzione = direzione;
-		this.grandezza = grandezza;
+		this.tipo = tipo;
 	}
 
 	public Direzione getDirezione() {
 		return direzione;
 	}
 
-	public int getGrandezza() {
-		return grandezza;
-	}
+	public TipoMeteorite getTipo() {
+        return tipo;
+    }
 
 }

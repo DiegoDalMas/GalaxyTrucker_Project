@@ -6,15 +6,17 @@ public class CostruzioneSimulatore {
     private List<Giocatore> giocatori;
     private GestioneTessere tutteLeTessere;
     private Scanner scanner = new Scanner(System.in);
+    private PlanciaVolo plancia;
 
-    public CostruzioneSimulatore(List<Giocatore> giocatori, GestioneTessere tutteLeTessere) {
+    public CostruzioneSimulatore(List<Giocatore> giocatori, GestioneTessere tutteLeTessere, PlanciaVolo plancia) {
         this.giocatori = giocatori;
         this.tutteLeTessere = tutteLeTessere;
+        this.plancia = plancia;
     }
 
     public void avviaCostruzione(){
         System.out.println("\n--- Inizio Fase di COSTRUZIONE ---");
-        Set<Giocatore> giocatoriCompletati = new HashSet<>();
+        List<Giocatore> giocatoriCompletati = new ArrayList<>();
 
         while(giocatoriCompletati.size() < giocatori.size()){
             for(Giocatore g: giocatori){
@@ -86,7 +88,15 @@ public class CostruzioneSimulatore {
             }
         }
 
-        System.out.println("\n Tutti i giocatori hanno completato la costruzione!");
-
+        System.out.println("\nTutti i giocatori hanno completato la costruzione!");
+        
+        for (int i = 0; i < giocatori.size(); i++) {
+            switch (i) {
+                case 0 -> giocatori.get(i).setPosizione(PosizioneGiocatore.PRIMO);
+                case 1 -> giocatori.get(i).setPosizione(PosizioneGiocatore.SECONDO);
+                case 2 -> giocatori.get(i).setPosizione(PosizioneGiocatore.TERZO);
+                case 3 -> giocatori.get(i).setPosizione(PosizioneGiocatore.QUARTO);
+            }
+        }
     }
 }

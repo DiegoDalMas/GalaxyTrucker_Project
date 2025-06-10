@@ -137,7 +137,6 @@ public class Astronave {
 	public boolean assegnaBatteria(Magazzino magazzino){
 		if(magazzino.prendiBatteria()){
 			batterieTotali++;
-			System.out.println("Hai preso una Batteria!");
 			return true;
 		}else{
 			System.out.println("Son finite le batterie!");
@@ -148,7 +147,6 @@ public class Astronave {
 	public boolean assegnaUmano(Magazzino magazzino) {
 		if(magazzino.prendiUmano()) {
 			umaniTotali++;
-			System.out.println("Hai preso un Umano");
 			return true;
 		}else {
 			System.out.println("Son finiti gli umani!");

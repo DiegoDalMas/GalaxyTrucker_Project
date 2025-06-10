@@ -14,7 +14,7 @@ public class GestioneTurni {
     }
 
     public void avviaFaseDiVolo(PlanciaVolo plancia){
-        System.out.println("\n Inizio Fase di Volo");
+        System.out.println("\n --- Inizio Fase di Volo ---");
 
         while(true){
             Giocatore leader = giocatori.get(0);

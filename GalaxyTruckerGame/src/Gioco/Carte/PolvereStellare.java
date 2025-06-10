@@ -26,5 +26,11 @@ public class PolvereStellare extends Carta {
 			plancia.muoviGiocatore(g.getColore(), -connettoriEsposti);
 			System.out.println("Retrocedi di " + connettoriEsposti + " giorni di volo.");
 		}
+		
+		System.out.println("------------------------------------");
+        System.out.println("------------------------------------");
+        System.out.println("--- SI PASSA ALLA PROSSIMA CARTA ---");
+        System.out.println("------------------------------------");
+        System.out.println("------------------------------------");
 	}
 }

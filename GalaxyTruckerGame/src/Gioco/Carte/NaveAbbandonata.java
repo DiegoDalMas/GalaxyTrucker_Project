@@ -48,6 +48,11 @@ public class NaveAbbandonata extends Carta {
 				System.out.println("Hai riparato la nave! Hai perso " + equipaggioPerso + " membri dell’equipaggio");
                 System.out.println("Hai guadagnato " + creditiGuadagnati + " crediti");
                 System.out.println("Hai perso " + giorniVoloPersi + " giorni di volo");
+                System.out.println("------------------------------------");
+                System.out.println("------------------------------------");
+                System.out.println("--- SI PASSA ALLA PROSSIMA CARTA ---");
+                System.out.println("------------------------------------");
+                System.out.println("------------------------------------");
 				break;	//si interrompe la carta
 			}else{
 				System.out.println("Hai scelto di non riparare la nave. La scelta passa al prossimo GIocatore");

@@ -66,6 +66,8 @@ public class PioggiaDiMeteoriti extends Carta {
 				}
 			}
 		}
+		
+		
 	}
 
 	private Tessera trovaTesseraColpita(Astronave nave, Direzione dir, int risultato){

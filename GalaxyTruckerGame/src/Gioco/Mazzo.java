@@ -16,9 +16,7 @@ public class Mazzo {
 		mazzoCarte.add(new SpazioAperto());
 		mazzoCarte.add(new Contrabbandieri());
 		mazzoCarte.add(new PolvereStellare());
-		mazzoCarte.add(new PioggiaDiMeteoriti());
-
-		
+		mazzoCarte.add(new PioggiaDiMeteoriti());	
 		Collections.shuffle(mazzoCarte);
 	}
 

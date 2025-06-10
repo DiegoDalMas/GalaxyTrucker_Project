@@ -34,14 +34,14 @@ public class StazioneAbbandonata extends Carta {
 	@Override
 	public void applicaEffetto(List<Giocatore> giocatori, Giocatore leader, PlanciaVolo plancia){
 		Scanner sc = new Scanner(System.in);
-		System.out.println("CARTA STAZIONE SPAZIALE");
+		System.out.println("CARTA STAZIONE ABBANDONATA");
 		System.out.println("Equipaggio richiesto: " + equipaggioRichiesto);
 		System.out.println("Merci disponibili: " + ricompensa.size());
 		System.out.print("Colori delle merci: ");
 		for (Merci m : ricompensa) {
 			System.out.print("[" + m.getColore() + "] ");
 		}
-		System.out.println("Giorni di volo persi: " + giorniVoloPersi);
+		System.out.println("\nGiorni di volo persi: " + giorniVoloPersi);
 
 		for(Giocatore g: giocatori){
 			System.out.println("Giocatore: " + g.getColore());
@@ -62,6 +62,11 @@ public class StazioneAbbandonata extends Carta {
 				g.getAstronave().assegnaMerce(ricompensa);
 				plancia.muoviGiocatore(g.getColore(), -giorniVoloPersi);
 				System.out.println("Hai perso " + giorniVoloPersi + " giorni di volo");
+				System.out.println("------------------------------------");
+                System.out.println("------------------------------------");
+                System.out.println("--- SI PASSA ALLA PROSSIMA CARTA ---");
+                System.out.println("------------------------------------");
+                System.out.println("------------------------------------");
 				break;
 			}else{
 				System.out.println("Hai rinunciato, tocca al prossimoo giocatore");

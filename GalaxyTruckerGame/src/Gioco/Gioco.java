@@ -45,7 +45,7 @@ public class Gioco {
         }
 
 		//FASE DI COSTRUZIONE
-		CostruzioneSimulatore costruzione = new CostruzioneSimulatore(giocatori, tutteLeTessere);
+		CostruzioneSimulatore costruzione = new CostruzioneSimulatore(giocatori, tutteLeTessere, plancia);
 		costruzione.avviaCostruzione();
 
 		//ASSEGNAMO AD OGNI GIOCATORE BATTERIE/UMANI/ECC..

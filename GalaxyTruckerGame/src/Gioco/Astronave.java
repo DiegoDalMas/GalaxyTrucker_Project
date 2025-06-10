@@ -616,5 +616,9 @@ public class Astronave {
 		return false;
 	}
 	
+	public Casella[][] getGriglia() {
+	    return griglia;
+	}
+	
 	
 }

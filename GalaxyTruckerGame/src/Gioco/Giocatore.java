@@ -29,6 +29,10 @@ public class Giocatore {
 		return colore;
 	}
 	
+	public int getCrediti() {
+		return this.crediti;
+	}
+	
 	
 	public void assegnaCrediti(int crediti) {
 		this.crediti += crediti;

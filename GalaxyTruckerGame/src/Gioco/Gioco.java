@@ -55,7 +55,7 @@ public class Gioco {
 		
 		//FASE DI VOLO
 		GestioneTurni volo = new GestioneTurni(giocatori, mazzoCarteAvventura);
-        volo.avviaFaseDiVolo();
+        volo.avviaFaseDiVolo(plancia);
 
 		//FINITO IL VOLO, CALCOLO DEI CREDITI
 		calcolaCrediti();//DA FARE

@@ -7,43 +7,30 @@ import java.io.*;
 
 public class Mazzo {
 	private List<Carta> mazzoCarte;
-	//private int livelloMazzo;
-	
 	
 	public Mazzo(String path) {
 		mazzoCarte = new ArrayList<>();
-		caricaCarteDaFile(path);
+		mazzoCarte.add(new Pianeti());
+		mazzoCarte.add(new NaveAbbandonata());
+		mazzoCarte.add(new StazioneAbbandonata());
+		mazzoCarte.add(new SpazioAperto());
+		mazzoCarte.add(new Contrabbandieri());
+		mazzoCarte.add(new PolvereStellare());
+		mazzoCarte.add(new PioggiaDiMeteoriti());
+
+		
 		Collections.shuffle(mazzoCarte);
 	}
-	
-	private void caricaCarteDaFile(String path) {
-        try (BufferedReader br = new BufferedReader(new FileReader(path))) {
-            String linea;
-            while ((linea = br.readLine()) != null) {
-                String[] valori = linea.split(",");
-                String tipo = valori[0];
-                switch (tipo.toUpperCase()) {
-                    case "PIANETI":
-                        mazzoCarte.add(new Pianeti(/*Integer.parseInt(valori[1])*/));
-                        break;
-                    case "NAVE_ABBANDONATA":
-                        mazzoCarte.add(new NaveAbbandonata(/*Integer.parseInt(valori[1])*/));
-                        break;
-                }
-            }
-        } catch (IOException e) {
-            System.out.println("Errore nella lettura delle carte: " + e.getMessage());
-        }
-    }
 
-    public void pescaCarta(Giocatore leader, List<Giocatore> giocatori) {
+    public void pescaCarta(Giocatore leader, List<Giocatore> giocatori, PlanciaVolo plancia) {
         if (mazzoCarte.isEmpty()) {
-            System.out.println("Il mazzo è vuoto.");
+            System.out.println("Il mazzo è vuoto");
             return;
         }
         Carta c = mazzoCarte.remove(0);
-        System.out.println("\n[" + leader.getColore() + " pesca una carta di tipo]: " + c.getTipo());
-        c.applicaEffetto(giocatori, leader);
+        System.out.println("[" + leader.getColore() + " pesca una carta di tipo]: " + c.getTipo());
+        
+        c.applicaEffetto(giocatori, leader, plancia);
     }
 	
     public boolean isEmpty() {

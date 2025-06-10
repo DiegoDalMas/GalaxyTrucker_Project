@@ -13,13 +13,13 @@ public class GestioneTurni {
         this.mazzoCarte = mazzo;
     }
 
-    public void avviaFaseDiVolo(){
+    public void avviaFaseDiVolo(PlanciaVolo plancia){
         System.out.println("\n Inizio Fase di Volo");
 
         while(true){
             Giocatore leader = giocatori.get(0);
             if(mazzoCarte.isEmpty()) break;
-            mazzoCarte.pescaCarta(leader, giocatori);
+            mazzoCarte.pescaCarta(leader, giocatori, plancia);
             aggiornaOrdineDiRotta();
         }
 
